@@ -1,8 +1,8 @@
 .promo {
   height: 524px;
-  position: relative;
   z-index: 1;
-  margin: 184px auto 224px;
+  margin: 184px auto 0;
+  position: relative;
 }
 
 .promo__title {
@@ -15,6 +15,7 @@
   letter-spacing: -0.04em;
   color: #fff;
   max-width: 730px;
+  margin: 0;
 }
 
 .promo__logo {
@@ -26,9 +27,9 @@
 /* Точка перелома между 1280 и 768 */
 @media screen and (max-width: 768px) {
   .promo {
-    height: 784px;
+    height: 560px;
     margin-top: 224px;
-    margin-bottom: 240px;
+    margin-bottom: 0;
   }
 }
 
@@ -41,7 +42,7 @@
 /* Точка перелома между 768 и 320 */
 @media screen and (max-width: 320px) {
   .promo {
-    height: 570px;
+    height: 248px;
     margin-top: 142px;
     margin-bottom: 180px;
   }
