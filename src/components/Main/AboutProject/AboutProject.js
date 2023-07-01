@@ -5,14 +5,14 @@ import '../AboutProject/AboutProject.css';
 function AboutProject(props) {
   return (
     <section className='about-project'>
-      <h1 className='about-project__title'>О проекте</h1>
+      <h2 className='about-project__title'>О проекте</h2>
       <div className='about-project__blocks'>
         <div className='about-project__block'>
-          <h2 className='about-project__block-name'>Дипломный проект включал 5&nbsp;этапов</h2>
+          <h3 className='about-project__block-name'>Дипломный проект включал 5&nbsp;этапов</h3>
           <p className='about-project__block-text'>Составление плана, работу над бэкендом, вёрстку, добавление функциональности и&nbsp;финальные доработки.</p>
         </div>
         <div className='about-project__block about-project__block_mod'>
-          <h2 className='about-project__block-name about-project__block-name_mod'>На&nbsp;выполнение диплома ушло 5&nbsp;недель</h2>
+          <h3 className='about-project__block-name about-project__block-name_mod'>На&nbsp;выполнение диплома ушло 5&nbsp;недель</h3>
           <p className='about-project__block-text'>У&nbsp;каждого этапа был мягкий и&nbsp;жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
         </div>
       </div>

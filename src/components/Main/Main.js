@@ -4,6 +4,7 @@ import '../Main/Main.css';
 import Promo from '../Main/Promo/Promo';
 import NavTab from '../Main/NavTab/NavTab';
 import AboutProject from '../Main/AboutProject/AboutProject';
+import Techs from '../Main/Techs/Techs';
 
 function Main(props) {
   return (
@@ -11,6 +12,7 @@ function Main(props) {
       <Promo/>
       <NavTab/>
       <AboutProject/>
+      <Techs/>
     </main>
   );
 }
