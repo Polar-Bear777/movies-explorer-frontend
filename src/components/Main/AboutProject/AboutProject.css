@@ -99,7 +99,6 @@
 @media screen and (max-width: 768px) {
   .about-project {
     height: 405px;
-    background: #202020;
     padding: 90px 50px 90px;
   }
 }
@@ -113,17 +112,6 @@
 @media screen and (max-width: 768px) {
   .about-project__blocks {
     margin-bottom: 93px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .about-project__blocks_mod {
-    margin-bottom: 0;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .about-project__blocks {
     margin-right: 30px;
   }
 }
@@ -131,11 +119,113 @@
 @media screen and (max-width: 768px) {
   .about-project__blocks_mod {
     margin-right: 0;
+    margin-bottom: 0;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .about-project__blocks-items-1 {
+    width: 140px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about-project__blocks-items-2 {
+    width: 528px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about-project__development {
+    font-size: 14px;
+    font-family: Suisse Intl;
+    font-weight: 400;
+    line-height: 17px;
+  }
+}
+
 /* Точка перелома между 768 и 320 */
 @media screen and (max-width: 320px) {
-  .navtab {
-    max-width: 320px;
+  .about-project__title {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    margin-bottom: 28px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-project {
+    height: 501px;
+    padding: 70px 18px 70px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-project__blocks {
+    flex-direction: column;
+    margin-right: 0;
+    margin-bottom: 60px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-project__blocks_mod {
+    flex-direction: row;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-project__block {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about-project__blocks-items-1 {
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about-project__blocks-items-2 {
+    width: 184px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-project__block-name {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    margin-top: 60px;
+    margin-bottom: 16px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-project__block-name_mod {
+    margin-top: 56px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-project__block-text {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-project__time {
+    font-size: 11px;
+    padding: 11px 10px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-project__development {
+    font-size: 11px;
+    line-height: normal;
+    margin-top: 10px;
   }
 }

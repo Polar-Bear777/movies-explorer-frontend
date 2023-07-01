@@ -12,7 +12,7 @@ function AboutProject(props) {
           <p className='about-project__block-text'>Составление плана, работу над бэкендом, вёрстку, добавление функциональности и&nbsp;финальные доработки.</p>
         </div>
         <div className='about-project__block about-project__block_mod'>
-          <h2 className='about-project__block-name'>На&nbsp;выполнение диплома ушло 5&nbsp;недель</h2>
+          <h2 className='about-project__block-name about-project__block-name_mod'>На&nbsp;выполнение диплома ушло 5&nbsp;недель</h2>
           <p className='about-project__block-text'>У&nbsp;каждого этапа был мягкий и&nbsp;жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
         </div>
       </div>
