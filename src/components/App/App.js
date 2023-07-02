@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import Header from '../Header/Header';
+import { useState, useEffect } from 'react';
 import Main from '../Main/Main';
 import Register from '../Register/Register';
 // import Login from '../Login/Login';
@@ -8,15 +8,15 @@ import Register from '../Register/Register';
 // import SavedMovies from '../SavedMovies/SavedMovies';
 // import Profile from '../Profile/Profile';
 // import NotFound from '../NotFound/NotFound';
-import Footer from '../Footer/Footer';
 import './App.css';
 
 function App() {
+  const [isloggedIn, setIsloggedIn] = useState(true);
+
   return (
     <div className="app-page">
-      <Header/>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Main isloggedIn={isloggedIn} />} />
         <Route path="/signup" element={<Register />} />
         {/* <Route path="/signin" element={<Login />} />
         <Route path="/movies" element={<Movies />} />
@@ -25,7 +25,6 @@ function App() {
         <Route path="*" element={<Navigate to="/" replace/>} />
         <Route path="/404" element={<NotFound />} /> */}
       </Routes>
-      <Footer/>
     </div>
   );
 }
