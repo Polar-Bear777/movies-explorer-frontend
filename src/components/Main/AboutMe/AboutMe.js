@@ -1,4 +1,4 @@
-// Techs.js
+// AboutMe.js
 import React from 'react';
 import '../AboutMe/AboutMe.css';
 import aboutMePhoto from "./../../../images/about-me__photo.jpg"
