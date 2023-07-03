@@ -7,7 +7,7 @@ function SearchForm({ isloggedIn }) {
       <form className='search-form__blocks'>
         <div className='search-form__block-input'>
         <input minLength={2} maxLength={24} required placeholder='Фильм' className='search-form__input'></input>
-        <button type='submit' className='search-form__button'>Найти</button>
+        <button type='submit' className='search-form__button'>Поиск</button>
         </div>
         <div className='search-form__block-checkbox'>
           <input type="checkbox" id="search-form__checkbox" className='search-form__checkbox'></input>
