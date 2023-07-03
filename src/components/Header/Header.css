@@ -30,6 +30,7 @@
   color: #fff;
   background-color: #073042;
   border-style: none;
+  cursor: pointer;
 }
 
 .header__button-signin {
@@ -44,6 +45,7 @@
   border-radius: 3px;
   padding: 8px 20px;
   border-style: none;
+  cursor: pointer;
 }
 
 /* Точка перелома между 1280 и 768 */

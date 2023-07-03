@@ -11,6 +11,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 function Main({ isloggedIn }) {
+
   return (
     <>
     <Header isloggedIn={isloggedIn} />
