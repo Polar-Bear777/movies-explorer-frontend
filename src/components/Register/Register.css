@@ -1,0 +1,185 @@
+.register {
+  background-color: #202020;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  padding: 70px 30px;
+}
+
+.register__block-top {
+  width: 396px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.register__logo:hover {
+  cursor: pointer;
+  opacity: .8;
+}
+
+.register__title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #FFFFFF;
+  margin-top: 37px;
+}
+
+.register__block-main {
+  width: 396px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 18px 30px;
+}
+
+.register__label {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #8B8B8B;
+  width: 100%;
+  display: inline-block;
+  text-align: start;
+  margin-bottom: 5px;
+}
+
+.register__input {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FFFFFF;
+  border: 0;
+  background-color: #202020;
+  width: 100%;
+  padding: 0;
+  padding-bottom: 7px;
+  border-bottom: solid #424242;
+}
+
+.register__input:focus {
+  outline: none;
+  transform: scale(1.1);
+}
+
+.register__button-submit {
+  background: #4285F4;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #FFFFFF;
+  border: 0;
+  width: 100%;
+  height: 45px;
+  margin-top: 132px;
+}
+
+.register__button-submit[disabled] {
+  opacity: .3;
+}
+
+.register__button-submit[disabled]:hover {
+  cursor: not-allowed;
+}
+
+.register__button-submit:hover {
+  cursor: pointer;
+  opacity: .8;
+}
+
+
+.register__block-bottom {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 0px 30px;
+}
+
+.register__link-description {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #8B8B8B;
+}
+
+.register__link-login {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #4285F4;
+}
+
+.register__link-login:hover {
+  opacity: .7;
+}
+
+.register__error {
+  display: inline-block;
+  color: #EE3465;
+  font-size: 10px;
+  text-align: start;
+  min-width: 100%;
+  min-height: 16px;
+}
+
+.register__error-invisible {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .register {
+    padding: 232px 30px;
+  }
+}
+
+@media (max-width: 460px) {
+  .register {
+    padding: 55px 30px;
+  }
+
+  .register__block-top {
+    width: 260px;
+    align-items: center;
+  }
+
+  .register__title {
+    font-size: 24px;
+    width: 260px;
+    margin-top: 49px;
+  }
+
+  .register__block-main {
+    width: 260px;
+    padding: 57px 0;
+    box-sizing: border-box;
+  }
+
+  .register__logo {
+    margin-top: -10px;
+  }
+
+  .register__button-submit {
+    font-size: 12px;
+    margin-top: 220px;
+  }
+
+  .register__link-description {
+    font-size: 12px;
+  }
+
+  .register__link-login {
+    font-size: 12px;
+  }
+
+  .register__block-bottom {
+    gap: 8px;
+  }
+}

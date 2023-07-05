@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+// import { register, login, tokencheck } from '../../utils/Auth';
 import Main from '../Main/Main';
 import Register from '../Register/Register';
 // import Login from '../Login/Login';
@@ -12,6 +13,15 @@ import './App.css';
 
 function App() {
   const [isloggedIn, setIsloggedIn] = useState(true);
+
+  // async function handleRegistration(name, email, password, e) {
+  //   return register(name, email, password)
+  //     .then((res) => {
+  //       console.log(res)
+  //       e.target.reset()
+  //     })
+  //     .catch(err => alert(err))
+  // }
 
   return (
     <div className="app-page">

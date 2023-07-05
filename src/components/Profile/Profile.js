@@ -48,20 +48,14 @@ function Profile({ isloggedIn }) {
     setGonnaEdit(true);
   }
 
-  // это только для проверки верстки , далее удаляю
-  const doErrorForReviewOnly = () => {
-    const span = document.querySelector('.profile__submit-error');
-    span.classList.toggle('profile__submit-error_invisible');
-  }
-
   return (
     <>
       <Header isloggedIn={isloggedIn} />
       <main className='profile'>
-        <section className='profile__container'>
+        <section className='profile__blocks'>
           <h1 className='profile__title'>Привет, Владислав!</h1>
           <form className='profile__form'>
-            <div className='profile__container-input'>
+            <div className='profile__block-input'>
               <label className='profile__input-label' htmlFor='profile__input_name'>Имя</label>
               <input name='name'
                 disabled='true'
@@ -75,7 +69,7 @@ function Profile({ isloggedIn }) {
                 id='profile__input_name'></input>
               <span className={formErrorMessage.name === 'undefined' ? 'profile__error-invisible' : 'profile__error'}>{formErrorMessage.name || ''}</span>
             </div>
-            <div className='profile__container-input'>
+            <div className='profile__block-input'>
               <label className='profile__input-label' htmlFor='profile__input_email'>E-mail</label>
               <input name='email'
                 disabled='true'
@@ -90,7 +84,7 @@ function Profile({ isloggedIn }) {
             {gonnaEdit ?
               <>
                 <span className='profile__submit-error profile__submit-error_invisible'>При обновлении профиля произошла ошибка.</span>
-                <button onClick={doErrorForReviewOnly} type='submit' className='profile__button-save'>Сохранить</button>
+                <button type='submit' className='profile__button-save'>Сохранить</button>
               </> :
               <button onClick={handelEdit} type='button' className='profile__button-edit'>Редактировать</button>
             }

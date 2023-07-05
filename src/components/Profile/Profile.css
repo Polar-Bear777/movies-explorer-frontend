@@ -3,12 +3,13 @@
   flex-direction: column;
 }
 
-.profile__container {
+.profile__blocks {
   background-color: #202020;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 74px 10px 70px;
+  height: 100vh;
 }
 
 .profile__title {
@@ -31,13 +32,13 @@
   width: 100%;
 }
 
-.profile__container-input {
+.profile__block-input {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
 
-.profile__container-input:first-child {
+.profile__block-input:first-child {
   border-bottom: 1px solid #424242;
   margin-bottom: 16px;
 }
@@ -164,7 +165,7 @@
 
 /* Точка перелома между 1280 и 768 */
 @media (max-width: 768px) {
-  .profile__container {
+  .profile__blocks {
     padding: 236px 10px 269px;
   }
 
@@ -179,7 +180,7 @@
 
 /* Точка перелома между 768 и 320 */
 @media (max-width: 320px) {
-  .profile__container {
+  .profile__blocks {
     padding: 70px 30px 40px;
   }
 
