@@ -74,7 +74,7 @@
 }
 
 /* Точка перелома между 768 и 320 */
-@media (max-width: 460px) {
+@media (max-width: 320px) {
   .movieCardList {
     padding: 40px 10px 80px;
     gap: 20px;

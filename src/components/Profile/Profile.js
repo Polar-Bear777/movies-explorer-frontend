@@ -59,7 +59,7 @@ function Profile({ isloggedIn }) {
       <Header isloggedIn={isloggedIn} />
       <main className='profile'>
         <section className='profile__container'>
-          <h1 className='profile__title'>Привет, Виталий!</h1>
+          <h1 className='profile__title'>Привет, Владислав!</h1>
           <form className='profile__form'>
             <div className='profile__container-input'>
               <label className='profile__input-label' htmlFor='profile__input_name'>Имя</label>
