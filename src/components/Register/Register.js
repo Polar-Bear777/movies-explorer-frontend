@@ -97,7 +97,7 @@ function Register({ onRegistration }) {
               type="password"
               placeholder='&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;' //placeholder для макета, потом уберу
               onChange={handleChangePassword}></input>
-            <span className={formErrorMessage.password === 'undefined' ? 'register__error-invisible' : 'register__error'}>{formErrorMessage.password || 'что-то пошло не так...'}</span>
+            <span className={formErrorMessage.password === 'undefined' ? 'register__error-invisible' : 'register__error'}>{formErrorMessage.password || 'Что-то пошло не так...'}</span>
             <button type='submit' disabled={!isFormFieldsValid} className='register__button-submit' >Зарегистрироваться</button>
           </form>
           <div className='register__block-bottom'>
