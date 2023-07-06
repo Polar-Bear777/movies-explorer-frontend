@@ -1,4 +1,4 @@
-.header {
+/* .header {
   max-width: 100%;
   height: 74px;
   display: flex;
@@ -49,7 +49,7 @@
 }
 
 /* Точка перелома между 1280 и 768 */
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .header__logo {
     margin-left: 30px;
   }
@@ -59,10 +59,10 @@
   .header__button-signin {
     margin-right: 30px;
   }
-}
+} */
 
 /* Точка перелома между 768 и 320 */
-@media screen and (max-width: 320px) {
+/* @media screen and (max-width: 320px) {
   .header__logo {
     margin-left: 14px;
   }
@@ -78,5 +78,228 @@
 @media screen and (max-width: 320px) {
   .header__button-signin {
     margin-right: 7px;
+  }
+} */
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #202020;
+  padding: 12px 70px;
+}
+
+.header_mainColor {
+  background-color: #073042;
+}
+
+.header_unlogged {
+  background-color: #073042;
+  padding: 17px 70px;
+}
+
+.header__list {
+  display: flex;
+  flex-direction: row;
+  gap: 17px;
+  margin-left: 50px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.header__link {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  text-align: right;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.header__link:hover {
+  cursor: pointer;
+  opacity: .7;
+}
+
+.header__link-active {
+  font-weight: 500;
+  line-height: 18px;
+  font-size: 14px;
+  text-align: right;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.header__account-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.header__account-info:hover {
+  opacity: .7;
+  cursor: pointer;
+}
+
+.header__account-name {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 12px;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.header__account-logo {
+  width: 26px;
+  height: 26px;
+  background-color: #313131;
+  border-radius: 50px;
+  background-image: url(../../images/header__account-logo.svg);
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  background-position: center;
+}
+
+.header__logo-link:hover {
+  cursor: pointer;
+  opacity: .8;
+}
+
+.header__burger {
+  width: 44px;
+  height: 44px;
+  background-image: url(../../images/header__burger.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #202020;
+  border: 0;
+  display: none;
+}
+
+.header__burger_mainColor {
+  background-color: #073042;
+}
+
+.header__burger:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 17px 30px;
+  }
+
+  .header__burger {
+    display: block;
+  }
+
+  .header__list {
+    display: none;
+  }
+
+  .header__link-active {
+    padding-bottom: 8px;
+    border-bottom: solid #000;
+  }
+
+  .header__account-info {
+    display: none;
+  }
+}
+
+@media (max-width: 460px) {
+  .header {
+    padding: 16px 14px;
+  }
+
+  .header__logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  .header__burger {
+    width: 24px;
+    height: 40px;
+    margin-right: 8px;
+    margin-top: 1px;
+  }
+}
+
+.header__container {
+  display: flex;
+  gap: 26px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.header__button_signIn {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  color: #FFFFFF;
+  border: 0;
+  background-color: #073042;
+}
+
+.header__button_signIn:hover {
+  cursor: pointer;
+  opacity: .8;
+}
+
+.header__button_enter {
+  background: #3DDC84;
+  border-radius: 3px;
+  width: 76px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+  border: 0;
+}
+
+.header__button_enter:hover {
+  cursor: pointer;
+  opacity: .8;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 17px 30px;
+  }
+}
+
+@media (max-width: 460px) {
+  .header {
+    padding: 17px 14px;
+  }
+
+  .header__button_enter {
+    width: 54px;
+    height: 26px;
+    font-size: 10px;
+    line-height: 16px;
+  }
+
+  .header__container {
+    gap: 14px;
+  }
+
+  .header__button_signIn {
+    font-size: 10px;
+    line-height: 16px;
   }
 }

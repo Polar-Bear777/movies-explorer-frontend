@@ -65,7 +65,7 @@ function Profile({ isloggedIn }) {
                 minLength={2}
                 maxLength={18}
                 className='profile__input profile__input_name'
-                placeholder='Виталий'
+                placeholder='Владислав'
                 id='profile__input_name'></input>
               <span className={formErrorMessage.name === 'undefined' ? 'profile__error-invisible' : 'profile__error'}>{formErrorMessage.name || ''}</span>
             </div>
@@ -77,7 +77,7 @@ function Profile({ isloggedIn }) {
                 required
                 onChange={handleChangeEmail}
                 className='profile__input profile__input_email'
-                placeholder='pochta@yandex.ru'
+                placeholder='test@yandex.ru'
                 id='profile__input_email'></input>
               <span className={formErrorMessage.email === 'undefined' ? 'profile__error-invisible' : 'profile__error'}>{formErrorMessage.email || ''}</span>
             </div>
@@ -96,5 +96,4 @@ function Profile({ isloggedIn }) {
   )
 }
 
-// BEM validation done!
 export default Profile;

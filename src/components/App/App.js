@@ -43,8 +43,8 @@ function App() {
         <Route path="/" element={<Main isloggedIn={isloggedIn} />} />
         <Route path="/signup" element={<Register />} />
         <Route path="/signin" element={<Login />} />
-        <Route path="/movies" element={<Movies />} />
         <Route path="/saved-movies" element={<SavedMovies />} />
+        <Route path="/movies" element={<Movies />} />
         <Route path="/profile" element={<Profile />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
