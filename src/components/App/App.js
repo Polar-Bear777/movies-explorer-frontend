@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 // import { register, login, tokencheck } from '../../utils/Auth';
 import Main from '../Main/Main';
 import Register from '../Register/Register';
-// import Login from '../Login/Login';
+import Login from '../Login/Login';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
@@ -28,7 +28,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main isloggedIn={isloggedIn} />} />
         <Route path="/signup" element={<Register />} />
-        {/* <Route path="/signin" element={<Login />} /> */}
+        <Route path="/signin" element={<Login />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/saved-movies" element={<SavedMovies />} />
         <Route path="/profile" element={<Profile />} />
