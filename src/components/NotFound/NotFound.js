@@ -19,5 +19,4 @@ function NotFound() {
   );
 }
 
-// BEM validation done!
 export default NotFound;
