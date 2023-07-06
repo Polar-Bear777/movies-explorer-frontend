@@ -40,7 +40,7 @@ function Login({ onLogin }) {
   function handleSubmit(e) {
     e.preventDefault();
     const { email, password } = formValue;
-    onLogin(email, password, e);
+    // onLogin(email, password, e);
   }
 
   return (

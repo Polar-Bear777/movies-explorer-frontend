@@ -8,7 +8,7 @@ import Login from '../Login/Login';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
-// import NotFound from '../NotFound/NotFound';
+import NotFound from '../NotFound/NotFound';
 import './App.css';
 
 function App() {
@@ -17,6 +17,20 @@ function App() {
   // async function handleRegistration(name, email, password, e) {
   //   return register(name, email, password)
   //     .then((res) => {
+  //       console.log(res)
+  //       e.target.reset()
+  //     })
+  //     .catch(err => alert(err))
+  // }
+
+  // async function handleLogin(email, password, e) {
+  //   return login(email, password)
+  //     .then((res) => {
+  //       if (res.token) {
+  //         localStorage.setItem('jwt', res.token);
+  //         setIsloggedIn(true);
+  //         navigate("/movies", { replace: true })
+  //       }
   //       console.log(res)
   //       e.target.reset()
   //     })
@@ -32,8 +46,7 @@ function App() {
         <Route path="/movies" element={<Movies />} />
         <Route path="/saved-movies" element={<SavedMovies />} />
         <Route path="/profile" element={<Profile />} />
-        {/* <Route path="*" element={<Navigate to="/" replace/>} />
-        <Route path="/404" element={<NotFound />} /> */}
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </div>
   );

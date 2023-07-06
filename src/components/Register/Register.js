@@ -55,7 +55,7 @@ function Register({ onRegistration }) {
   function handleSubmit(e) {
     e.preventDefault();
     const { name, email, password } = formValue;
-    onRegistration(name, email, password, e)
+    // onRegistration(name, email, password, e)
   }
 
   return (
