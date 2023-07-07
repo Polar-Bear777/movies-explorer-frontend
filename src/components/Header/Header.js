@@ -43,7 +43,7 @@ function Header({ isloggedIn }) {
 
         <header className={isMainPage?'header header_mainColor':'header' }>
           <Link to='/' className='header__logo-link'><img alt='логотип' src={headerLogo} /></Link>
-          <div className='header__container'>
+          <div className='header__block'>
             <button onClick={goSignUp} type='button' className='header__button header__button_signIn'>Регистрация</button>
             <button onClick={goSignIn} type='button' className='header__button header__button_enter'>Войти</button>
           </div>
