@@ -50,7 +50,7 @@ function Header({ isloggedIn }) {
         </header > :
 
         <header className='header header_unlogged'>
-          <Link to='/' className='header__logo-link'><img alt='логотип' src={headerLogo} /></Link>
+          <Link to='/' className='header__logo-link header__logo-link_margin'><img alt='логотип' src={headerLogo} /></Link>
           <nav>
             <ul className='header__list'>
               <li><NavLink to='/movies' className={location.pathname === '/movies' ? 'header__link-active' : 'header__link'}>Фильмы</NavLink></li>
