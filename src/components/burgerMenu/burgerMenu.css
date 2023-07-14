@@ -68,13 +68,13 @@
 }
 
 .burger-menu__link-active {
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-size: 18px;
   font-weight: 500;
   text-decoration: none;
   padding-bottom: 7px;
-  border-bottom: solid #FFF;
+  border-bottom: solid #fff;
 }
 
 .burger-menu__account-info {
