@@ -119,6 +119,7 @@
   cursor: pointer;
 }
 
+/* Точка перелома между 1280 и 768 */
 @media (max-width: 768px) {
   .header {
     padding: 17px 30px;
@@ -146,6 +147,7 @@
   }
 }
 
+/* Точка перелома между 768 и 320 */
 @media (max-width: 320px) {
   .header {
     padding: 16px 14px;
@@ -220,12 +222,14 @@
   opacity: .8;
 }
 
+/* Точка перелома между 1280 и 768 */
 @media (max-width: 768px) {
   .header {
     padding: 18px 30px;
   }
 }
 
+/* Точка перелома между 768 и 320 */
 @media (max-width: 320px) {
   .header {
     padding: 18px 14px;
