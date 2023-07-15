@@ -1,0 +1,52 @@
+.navtab {
+  max-width: 1280px;
+  height: 66px;
+  display: grid;
+  background-color: #272727;
+}
+
+.navtab__links {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 40px;
+  grid-template-columns: repeat(3, minmax(min-content, max-content));
+  align-content: center;
+  justify-content: center;
+}
+
+.navtab__link {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  font-family: 'Inter';
+  text-decoration-line: underline;
+  color: #fff;
+}
+
+/* Точка перелома между 1280 и 768 */
+@media screen and (max-width: 768px) {
+  .navtab {
+    max-width: 768px;
+  }
+}
+
+/* Точка перелома между 768 и 320 */
+@media screen and (max-width: 320px) {
+  .navtab {
+    max-width: 320px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .navtab__links {
+    gap: 24px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .navtab__link {
+    font-size: 11px;
+  }
+}

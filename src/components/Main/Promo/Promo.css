@@ -1,0 +1,111 @@
+.promo {
+  height: 524px;
+  z-index: 1;
+  margin: 184px auto 0;
+  position: relative;
+}
+
+.promo__title {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  font-family: 'Inter';
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: #fff;
+  max-width: 730px;
+  margin: 0;
+}
+
+.promo__logo {
+  position: absolute;
+  top: -100px;
+  left: 28%;
+}
+
+/* Точка перелома между 1280 и 768 */
+@media screen and (max-width: 768px) {
+  .promo {
+    height: 560px;
+    margin-top: 224px;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .promo__logo {
+    top: -71px;
+  }
+}
+
+@media screen and (max-width:650px) {
+  .promo__logo {
+    width: 248px;
+    height: 248px;
+    top: -46px;
+    left: 32%;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .promo__logo {
+    width: 248px;
+    height: 248px;
+    top: -46px;
+    left: 30%;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .promo__logo {
+    width: 248px;
+    height: 248px;
+    top: -46px;
+    left: 26%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .promo__logo {
+    width: 248px;
+    height: 248px;
+    top: -46px;
+    left: 23%;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .promo__logo {
+    width: 248px;
+    height: 248px;
+    top: -46px;
+    left: 15%;
+  }
+}
+
+/* Точка перелома между 768 и 320 */
+@media screen and (max-width: 320px) {
+  .promo {
+    height: 248px;
+    margin-top: 142px;
+    margin-bottom: 180px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .promo__title {
+    font-size: 31px;
+    line-height: 39px;
+    font-weight: 400;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .promo__logo {
+    width: 248px;
+    height: 248px;
+    top: -46px;
+    left: 11%;
+  }
+}

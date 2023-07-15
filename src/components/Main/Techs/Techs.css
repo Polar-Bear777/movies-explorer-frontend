@@ -1,0 +1,176 @@
+.techs {
+  background: #272727;
+  height: 425px;
+  margin: 0;
+  padding: 100px 70px 100px;
+}
+
+.techs__heading {
+  color: #fff;
+  font-size: 22px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  margin: 0;
+}
+
+.techs__block {
+  margin-top: 23px;
+  border-top: 1px solid #dadada;
+}
+
+.techs__title {
+  margin: 0;
+  text-align: center;
+  font-size: 50px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -2px;
+  color: #fff;
+  margin-top: 90px;
+}
+
+.techs__text {
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.56px;
+  margin: 26px auto 0;
+  max-width: 460px;
+}
+
+.techs__grid-blocks {
+  margin: 100px auto 0;
+  display: flex;
+  justify-content: center;
+}
+
+.techs__lists {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(7, minmax(min-content, max-content));
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.techs__list {
+  width: 90px;
+  border-radius: 10px;
+  background: #303030;
+  padding-top: 21px;
+  padding-bottom: 22px;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.56px;
+}
+
+/* Точка перелома между 1280 и 768 */
+@media screen and (max-width: 768px) {
+  .techs {
+    height: 387px;
+    padding: 90px 50px 90px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .techs__title {
+    margin-top: 80px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .techs__text {
+    margin-top: 22px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .techs__grid-blocks {
+    margin-top: 83px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .techs__list {
+    width: 84px;
+    padding-bottom: 21px;
+    font-size: 12px;
+    letter-spacing: -0.48px;
+  }
+}
+
+/* Точка перелома между 768 и 320 */
+@media screen and (max-width: 650px) {
+  .techs {
+    height: 511px;
+    padding: 70px 18px 70px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .techs__heading {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .techs__block {
+    margin-top: 28px;
+    border-color: #000;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .techs__title {
+    margin-top: 60px;
+    font-size: 30px;
+    letter-spacing: -1.2px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .techs__text {
+    margin-top: 24px;
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: -0.44px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .techs__grid-blocks {
+    margin-top: 50px;
+    gap: 10px;
+    grid-template-columns: repeat(7, minmax(min-content, max-content));
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .techs__lists {
+    gap: 10px;
+    grid-template-columns: repeat(2, minmax(min-content, max-content));
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .techs__list {
+    font-size: 12px;
+    font-family: Inter;
+    letter-spacing: -0.48px;
+  }
+}
