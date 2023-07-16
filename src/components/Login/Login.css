@@ -149,7 +149,7 @@
 }
 
 /* Точка перелома между 768 и 320 */
-@media (max-width: 320px) {
+@media (max-width: 400px) {
   .login {
     padding: 56px 30px 30px;
   }
@@ -164,6 +164,7 @@
     width: 260px;
     margin: 50px 0 80px;
     width: 260px;
+    text-align: center;
   }
 
   .login__block-main {

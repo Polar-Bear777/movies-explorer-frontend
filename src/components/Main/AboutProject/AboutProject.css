@@ -145,7 +145,7 @@
 }
 
 /* Точка перелома между 768 и 320 */
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
   .about-project__title {
     font-size: 18px;
     letter-spacing: -0.72px;
@@ -153,14 +153,14 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
   .about-project {
     height: 501px;
     padding: 70px 18px 70px;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
   .about-project__blocks {
     flex-direction: column;
     margin-right: 0;
@@ -168,32 +168,32 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
   .about-project__blocks_mod {
     flex-direction: row;
     margin-bottom: 0;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
   .about-project__block {
     margin-right: 0;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
   .about-project__blocks-items-1 {
     width: 100px;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
   .about-project__blocks-items-2 {
     width: 184px;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
   .about-project__block-name {
     font-size: 18px;
     letter-spacing: -0.72px;
@@ -202,27 +202,27 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
   .about-project__block-name_mod {
     margin-top: 56px;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
   .about-project__block-text {
     font-size: 11px;
     line-height: 16px;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
   .about-project__time {
     font-size: 11px;
     padding: 11px 10px;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
   .about-project__development {
     font-size: 11px;
     line-height: normal;

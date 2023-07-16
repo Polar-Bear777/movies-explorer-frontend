@@ -43,6 +43,7 @@
   height: 52px;
   flex-shrink: 0;
   border: none;
+  cursor: pointer;
 }
 
 .search-form__block-checkbox {
@@ -102,14 +103,14 @@
 }
 
 /* Точка перелома между 768 и 320 */
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 460px) {
   .search-form {
     padding-left: 14px;
     padding-right: 14px;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 460px) {
   .search-form__input {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -120,7 +121,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 460px) {
   .search-form__button {
     margin-top: 6px;
     margin-bottom: 6px;
@@ -132,7 +133,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 460px) {
   .search-form__block-checkbox {
     margin-top: 31px;
     padding-bottom: 64px;

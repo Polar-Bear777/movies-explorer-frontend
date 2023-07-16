@@ -74,7 +74,7 @@
   font-weight: 500;
   text-decoration: none;
   padding-bottom: 7px;
-  border-bottom: solid #fff;
+  border-bottom: 1px solid #fff;
 }
 
 .burger-menu__account-info {
