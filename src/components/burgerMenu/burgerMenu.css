@@ -1,7 +1,7 @@
 .burger-menu {
   z-index: 9999;
   background-color: #202020;
-  height: 100vh;
+  height: 100%;
   width: 67.71%;
   display: flex;
   flex-direction: column;
@@ -12,6 +12,7 @@
   align-items: center;
   padding-top: 159px;
   box-sizing: border-box;
+  position: fixed;
 }
 
 .burger-menu__overlay {
@@ -68,6 +69,7 @@
 }
 
 .burger-menu__link-active {
+  font-family: Inter;
   color: #fff;
   text-align: center;
   font-size: 18px;

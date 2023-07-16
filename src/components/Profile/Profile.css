@@ -178,10 +178,33 @@
   }
 }
 
+@media (max-width: 417px) {
+  .profile__input-label {
+    width: 10%;
+  }
+
+  .profile__input {
+    width: 88%;
+  }
+}
+
+@media (max-width: 359px) {
+  .profile__input-label {
+    width: 15%;
+  }
+
+  .profile__input {
+    width: 83%;
+  }
+}
 /* Точка перелома между 768 и 320 */
 @media (max-width: 320px) {
   .profile__blocks {
     padding: 70px 30px 40px;
+  }
+
+  .profile__form {
+    max-width: 260px;
   }
 
   .profile__title {
@@ -189,7 +212,7 @@
   }
 
   .profile__input {
-    width: 78%;
+    width: 80%;
   }
 
   .profile__button-edit {

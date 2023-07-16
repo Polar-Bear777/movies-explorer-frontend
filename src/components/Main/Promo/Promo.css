@@ -39,6 +39,51 @@
   }
 }
 
+@media screen and (max-width:650px) {
+  .promo__logo {
+    width: 248px;
+    height: 248px;
+    top: -46px;
+    left: 32%;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .promo__logo {
+    width: 248px;
+    height: 248px;
+    top: -46px;
+    left: 30%;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .promo__logo {
+    width: 248px;
+    height: 248px;
+    top: -46px;
+    left: 26%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .promo__logo {
+    width: 248px;
+    height: 248px;
+    top: -46px;
+    left: 23%;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .promo__logo {
+    width: 248px;
+    height: 248px;
+    top: -46px;
+    left: 15%;
+  }
+}
+
 /* Точка перелома между 768 и 320 */
 @media screen and (max-width: 320px) {
   .promo {
