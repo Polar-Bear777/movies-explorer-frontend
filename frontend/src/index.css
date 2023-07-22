@@ -1,0 +1,21 @@
+/* Стили и шрифты */
+@import url(../src/vendor/normalize.css);
+@import url(../src/vendor/fonts/font.css);
+
+/* Блок страницы */
+.body {
+  margin: 0;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width: 1280px;
+  margin: 0 auto;
+  background-color: #202020;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+/* * { outline: 1px solid yellow; } */
