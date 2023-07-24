@@ -92,12 +92,3 @@ export const getUserMovies = () => {
     })
         .then(checkResponse);
 }
-
-// ПОЛУЧЕНИЕ ТОКЕНА
-export const checkToken = () => {
-    return fetch(mainApiConfig.userData, {
-        method: 'GET',
-        credentials: 'include',
-    })
-        .then(checkResponse);
-}

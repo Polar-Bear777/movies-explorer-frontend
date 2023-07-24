@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
-import { registerUser, loginUser } from '../../utils/Auth';
+import * as Auth from '../../utils/Auth';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import Registration from '../Register/Registration';
@@ -9,34 +11,38 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 import '../App/App.css';
 
 function App() {
-  const navigate = useNavigate();
-
+  // СТЕЙТ ДЛЯ АВТОРИЗАЦИИ/РЕГИСТРАЦИИ
   const [isloggedIn, setIsloggedIn] = useState(false);
+  const [emailName, setEmailName] = useState(null);
+  // СТЕЙТ ДЛЯ ПОЛУЧЕНИЯ ПОЛЬЗОВАТЕЛЯ
   const [currentUser, setCurrentUser] = useState({});
-
-  async function handleRegistration(name, email, password, e) {
-    return registerUser(name, email, password)
-      .then((res) => {
-        console.log(res)
+  // NAVIGATE
+  const navigate = useNavigate();
+  
+  // РЕГИСТРАЦИЯ
+  function onRegister(name, email, password, e) {
+    Auth
+      .registerUser(name, email, password)
+      .then(() => {
+        navigate("/sign-in");
         e.target.reset()
       })
       .catch(err => alert(err))
   }
 
-  async function handleLogin(email, password, e) {
-    return loginUser(email, password)
+   // ВХОД
+   function onLogin(email, password, e) {
+    Auth
+      .loginUser(email, password)
       .then((res) => {
-        if (res.token) {
-          localStorage.setItem('jwt', res.token);
-          setIsloggedIn(true);
-          navigate("/movies", { replace: true })
-        }
-        console.log(res)
+        localStorage.setItem("jwt", res.token);
+        setIsloggedIn(true);
+        setEmailName(email);
+        navigate("/");
         e.target.reset()
       })
       .catch(err => alert(err))
@@ -49,9 +55,9 @@ function App() {
 
           <Route path='/' element={<Main isloggedIn={isloggedIn} />} />
 
-          <Route path='/signup' element={<Registration onRegistration={handleRegistration} />} />
+          <Route path='/signup' element={<Registration onRegistration={onRegister} />} />
 
-          <Route path='/signin' element={<Login onLogin={handleLogin} />} />
+          <Route path='/signin' element={<Login onLogin={onLogin} />} />
 
           <Route path='/saved-movies' element={<ProtectedRouteElement loggedIn={isloggedIn} element={SavedMovies} isloggedIn={isloggedIn} />} />
 
