@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
-import { registerUser, loginUser, getToken } from '../../utils/Auth';
+import { registerUser, loginUser } from '../../utils/Auth';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import Registration from '../Register/Registration';

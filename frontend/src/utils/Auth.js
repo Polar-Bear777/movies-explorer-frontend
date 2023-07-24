@@ -1,11 +1,12 @@
 // ПРОВЕРКА СТАТУСА
-function checkResponse(res) {
+export function checkResponse(res) {
   if (res.ok) {
     return res.json();
   }
   return Promise.reject(`Ошибка: ${res.status}`)
 }
 
+// БЭКЕНД
 export const BASE_URL = 'https://api.bearpolar.nomoredomai.nomoreparties.sbs';
 
 // АВТОРИЗАЦИЯ
@@ -50,15 +51,3 @@ export const editUser = (name, email) => {
     })
   }).then(res => checkResponse(res))
 };
-
-// ПОЛУЧЕНИЕ ТОКЕНА
-export const getToken = () => {
-  return fetch(`${BASE_URL}/users/me`, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-    }
-  }).then(res => checkResponse(res))
-} 
