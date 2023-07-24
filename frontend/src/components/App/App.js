@@ -15,7 +15,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 function App() {
   const navigate = useNavigate();
 
-  const [isloggedIn, setIsloggedIn] = useState(true);
+  const [isloggedIn, setIsloggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
   async function handleRegistration(name, email, password, e) {
