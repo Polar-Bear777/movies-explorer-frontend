@@ -1,7 +1,6 @@
-import '../App/App.css';
 import { useState, useEffect } from 'react';
-import { Route, Routes, useNavigate } from "react-router-dom";
-import { register, login, tokencheck } from '../../utils/Auth';
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import { registerUser, loginUser, getToken } from '../../utils/Auth';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import Registration from '../Register/Registration';
@@ -12,6 +11,8 @@ import NotFound from '../NotFound/NotFound';
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
+import '../App/App.css';
+
 function App() {
   const navigate = useNavigate();
 
@@ -19,7 +20,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
 
   async function handleRegistration(name, email, password, e) {
-    return register(name, email, password)
+    return registerUser(name, email, password)
       .then((res) => {
         console.log(res)
         e.target.reset()
@@ -28,7 +29,7 @@ function App() {
   }
 
   async function handleLogin(email, password, e) {
-    return login(email, password)
+    return loginUser(email, password)
       .then((res) => {
         if (res.token) {
           localStorage.setItem('jwt', res.token);
