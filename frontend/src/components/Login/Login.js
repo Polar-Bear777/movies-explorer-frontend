@@ -40,7 +40,7 @@ function Login({ onLogin }) {
   function handleSubmit(e) {
     e.preventDefault();
     const { email, password } = formValue;
-    // onLogin(email, password, e);
+    onLogin(email, password, e);
   }
 
   return (
@@ -51,14 +51,14 @@ function Login({ onLogin }) {
           <h1 className='login__title'>Рады видеть!</h1>
         </div>
         <div className='login__block-main'>
-          <form className='login__form' onSubmit={handleSubmit}>
+          <form className='login__form' noValidate onSubmit={handleSubmit}>
             <label className='login__label' htmlFor='login__input_email'>E-mail</label>
             <input className='login__input login__input_email'
               id='login__input_email'
               name='email'
               required
               type="email"
-              placeholder='pochta@yandex.ru' // placeholder для макета уберу
+              placeholder='pochta@yandex.ru'
               onChange={handleChangeEmail}></input>
             <span className={formErrorMessage.email === 'undefined' ? 'login__error-invisible' : 'login__error'}>{formErrorMessage.email || ''}</span>
             <label className='login__label' htmlFor='login__input_password'>Пароль</label>

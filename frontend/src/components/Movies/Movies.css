@@ -1,0 +1,12 @@
+.main {
+  min-height: 75vh;
+}
+
+.error-message,
+.empty-result {
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 34px;
+  color: #8b8b8b;
+  margin: 5%;
+}

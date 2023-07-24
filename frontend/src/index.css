@@ -1,9 +1,21 @@
 /* Стили и шрифты */
-@import url("./vendor/normalize.css");
-@import url("./vendor/fonts/font.css");
+@import url(../src/vendor/normalize.css);
+@import url(../src/vendor/fonts/font.css);
 
 /* Блок страницы */
-@import url("./components/App/App.css");
+.body {
+  margin: 0;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width: 1280px;
+  margin: 0 auto;
+  background-color: #202020;
+}
 
-/* HEADER */
-@import url("./components/Header/Header.css");
+.no-scroll {
+  overflow: hidden;
+}
+
+/* * { outline: 1px solid yellow; } */

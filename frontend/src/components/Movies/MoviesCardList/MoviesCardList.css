@@ -37,6 +37,7 @@
   padding: 18px 0 19px;
 }
 
+
 .movieCardList__button-more {
   display: flex;
   flex-direction: column;
@@ -57,19 +58,27 @@
   height: 36px;
 }
 
+.movieCardList__button-more_invisible {
+  visibility: hidden;
+}
+
 .movieCardList__button-more:hover {
   opacity: .8;
   cursor: pointer;
-}
-
-.movieCardList__button-more_invisible {
-  visibility: hidden;
 }
 
 /* Точка перелома между 1280 и 768 */
 @media (max-width: 768px) {
   .movieCardList {
     padding: 60px 30px 80px;
+  }
+
+  .movieCardList__more {
+    padding: 64px 0 62px;
+  }
+
+  .movieCardList__more_invisible {
+    padding: 37px 0 62px;
   }
 }
 
@@ -82,6 +91,14 @@
 
   .movieCardList__list {
     gap: 20px;
+  }
+
+  .movieCardList__more {
+    padding: 26px 0 62px;
+  }
+
+  .movieCardList__more_invisible {
+    padding: 0px 0 62px;
   }
 
   .movieCardList__button-more {

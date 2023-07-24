@@ -1,10 +1,8 @@
-// Header.js
-import React from 'react';
 import { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
 import '../Header/Header.css'
-import headerLogo from "./../../images/header__logo.svg";
-import BurgerMenu from './../burgerMenu/burgerMenu';
+import headerLogo from '../../images/header__logo.svg';
+import BurgerMenu from '../burgerMenu/BurgerMenu';
 
 function Header({ isloggedIn }) {
   const location = useLocation();
@@ -14,7 +12,7 @@ function Header({ isloggedIn }) {
 
   const isMainPage = location.pathname === '/';
 
-  // заблочил скролл при открытом бургере
+  // Блок скролла
   useEffect(() => {
     const body = document.querySelector('body');
 
@@ -42,15 +40,7 @@ function Header({ isloggedIn }) {
       {isloggedIn ?
 
         <header className={isMainPage?'header header_mainColor':'header' }>
-          <Link to='/' className='header__logo-link'><img alt='логотип' src={headerLogo} /></Link>
-          <div className='header__block'>
-            <button onClick={goSignUp} type='button' className='header__button header__button_signIn'>Регистрация</button>
-            <button onClick={goSignIn} type='button' className='header__button header__button_enter'>Войти</button>
-          </div>
-        </header > :
-
-        <header className='header header_unlogged'>
-          <Link to='/' className='header__logo-link header__logo-link_margin'><img alt='логотип' src={headerLogo} /></Link>
+          <Link to='/' className='header__logo-link' > <img alt='логотип проекта' src={headerLogo} className='header__logo' /></Link>
           <nav>
             <ul className='header__list'>
               <li><NavLink to='/movies' className={location.pathname === '/movies' ? 'header__link-active' : 'header__link'}>Фильмы</NavLink></li>
@@ -62,6 +52,14 @@ function Header({ isloggedIn }) {
             <span className='header__account-name'>Аккаунт</span>
             <div className='header__account-logo'></div>
           </Link>
+        </header > :
+
+        <header className='header header_unlogged'>
+          <Link to='/' className='header__logo-link'><img alt='логотип' src={headerLogo} /></Link>
+          <div className='header__block'>
+            <button onClick={goSignUp} type='button' className='header__button header__button_signIn'>Регистрация</button>
+            <button onClick={goSignIn} type='button' className='header__button header__button_enter'>Войти</button>
+          </div>
         </header>}
       <BurgerMenu isOpened={isBurgerOpened} onClose={handleBurgerOpening} />
     </>

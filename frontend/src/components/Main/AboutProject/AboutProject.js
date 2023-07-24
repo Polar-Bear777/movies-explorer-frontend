@@ -1,10 +1,9 @@
-// AboutProject.js
-import React from 'react';
-import '../AboutProject/AboutProject.css';
+import './AboutProject.css'
 
-function AboutProject(props) {
+function AboutProject() {
+
   return (
-    <section className='about-project'>
+    <section className='about-project' id='about-project'>
       <h2 className='about-project__title'>О проекте</h2>
       <div className='about-project__blocks'>
         <div className='about-project__block'>
@@ -27,7 +26,8 @@ function AboutProject(props) {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
+// BEM validate done!
 export default AboutProject;

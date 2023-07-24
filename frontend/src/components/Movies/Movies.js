@@ -1,17 +1,17 @@
-import '../Movies/Movies.css';
+import './Movies.css';
 import Header from '../Header/Header';
-import SearchForm from '../Movies/SearchForm/SearchForm';
-import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import SearchForm from './SearchForm/SearchForm';
+import MoviesCardList from './MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 
-function Movies({ isloggedIn }) {
+function Movies({ isloggedIn, setInfoTool, closeInfoTool }) {
 
   return (
     <>
       <Header isloggedIn={isloggedIn} />
-      <main>
+      <main className='main' onClick={closeInfoTool}>
         <SearchForm />
-        <MoviesCardList inSaveMovies={false} isNeedMoreButton={true} />
+        <MoviesCardList />
       </main>
       <Footer />
     </>

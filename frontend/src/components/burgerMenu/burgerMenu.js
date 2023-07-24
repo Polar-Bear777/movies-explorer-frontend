@@ -1,4 +1,4 @@
-import './burgerMenu.css';
+import './BurgerMenu.css';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 
 function BurgerMenu({ isOpened, onClose }) {

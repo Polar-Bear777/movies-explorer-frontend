@@ -1,10 +1,10 @@
 // Techs.js
-import React from 'react';
-import '../Techs/Techs.css';
+import './Techs.css';
 
-function Techs(props) {
+function Techs() {
+
   return (
-    <section className='techs'>
+    <section className='techs' id='techs'>
       <h3 className='techs__heading'>Технологии</h3>
       <div className='techs__block'>
         <h2 className='techs__title'>7&nbsp;технологий</h2>
@@ -22,7 +22,8 @@ function Techs(props) {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
+// BEM validation done!
 export default Techs;

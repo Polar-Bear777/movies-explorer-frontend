@@ -1,11 +1,10 @@
-// AboutMe.js
-import React from 'react';
-import '../AboutMe/AboutMe.css';
-import aboutMePhoto from "./../../../images/about-me__photo.jpg"
+import "./AboutMe.css"
+import aboutMePhoto from '../../../images/about-me__photo.jpg'
 
-function AboutMe(props) {
+function AboutMe() {
+
   return (
-    <section className='about-me'>
+    <section className='about-me' id='about-me'>
       <h3 className='about-me__title'>Студент</h3>
       <div className='about-me__blocks'>
         <div className='about-me__block'>
@@ -19,7 +18,7 @@ function AboutMe(props) {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 export default AboutMe;

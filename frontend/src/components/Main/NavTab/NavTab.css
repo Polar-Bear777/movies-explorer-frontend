@@ -1,3 +1,11 @@
+.navTab {
+  background-color: #272727;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .navtab {
   max-width: 1280px;
   height: 66px;
@@ -13,6 +21,7 @@
   grid-template-columns: repeat(3, minmax(min-content, max-content));
   align-content: center;
   justify-content: center;
+  list-style-type: none;
 }
 
 .navtab__link {

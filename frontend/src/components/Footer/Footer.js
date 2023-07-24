@@ -1,8 +1,8 @@
 // Footer.js
-import React from 'react';
-import '../Footer/Footer.css'
+import './Footer.css';
 
-function Footer(props) {
+function Footer() {
+  
   return (
     <footer className='footer'>
       <h3 className='footer__title'>Учебный проект Яндекс.Практикум х&nbsp;BeatFilm.</h3>

@@ -1,5 +1,7 @@
-import './MoviesCard.css'
-import defaultImage from '../../images/movieCard__poster.png'
+import './MoviesCard.css';
+import defaultImage from '../../../images/movieCard__poster.png'
+import React, { useState, useEffect } from 'react';
+
 
 function MoviesCard({ inSaveMovies, name, poster, link }) {
 

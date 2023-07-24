@@ -16,8 +16,7 @@
 }
 
 .header_unlogged {
-  display: flex;
-  justify-content: flex-start;
+  background-color: #073042;
 }
 
 .header__logo-link_margin {

@@ -1,6 +1,6 @@
 import './Profile.css'
 import Header from '../Header/Header';
-import { useState } from 'react';
+import { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Profile({ isloggedIn }) {
@@ -20,7 +20,7 @@ function Profile({ isloggedIn }) {
     setFormErrorMessage({
       ...formErrorMessage,
       [name]: e.target.validationMessage
-    })
+    });
   }
 
   function handleChangeEmail(e) {
@@ -33,7 +33,7 @@ function Profile({ isloggedIn }) {
     setFormErrorMessage({
       ...formErrorMessage,
       [name]: e.target.validationMessage
-    })
+    });
   }
 
   const goExit = () => {
@@ -58,33 +58,33 @@ function Profile({ isloggedIn }) {
             <div className='profile__block-input'>
               <label className='profile__input-label' htmlFor='profile__input_name'>Имя</label>
               <input name='name'
-                disabled='true'
+                // disabled='true'
                 onChange={handleChangeName}
                 type='text'
+                placeholder='Владислав'
                 required
                 minLength={2}
                 maxLength={18}
                 className='profile__input profile__input_name'
-                placeholder='Владислав'
                 id='profile__input_name'></input>
               <span className={formErrorMessage.name === 'undefined' ? 'profile__error-invisible' : 'profile__error'}>{formErrorMessage.name || ''}</span>
             </div>
             <div className='profile__block-input'>
               <label className='profile__input-label' htmlFor='profile__input_email'>E-mail</label>
               <input name='email'
-                disabled='true'
+                // disabled='true'
                 type='email'
                 required
                 onChange={handleChangeEmail}
+                placeholder='pochta@yandex.ru'
                 className='profile__input profile__input_email'
-                placeholder='test@yandex.ru'
                 id='profile__input_email'></input>
               <span className={formErrorMessage.email === 'undefined' ? 'profile__error-invisible' : 'profile__error'}>{formErrorMessage.email || ''}</span>
             </div>
             {gonnaEdit ?
               <>
                 <span className='profile__submit-error profile__submit-error_invisible'>При обновлении профиля произошла ошибка.</span>
-                <button type='submit' className='profile__button-save'>Сохранить</button>
+                <button type='button' className='profile__button-save'>Сохранить</button>
               </> :
               <button onClick={handelEdit} type='button' className='profile__button-edit'>Редактировать</button>
             }

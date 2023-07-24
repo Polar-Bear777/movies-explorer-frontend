@@ -1,10 +1,10 @@
 // Portfolio.js
-import React from 'react';
+import './Portfolio.css'
+import portfolioURL from '../../../images/portfolio__url.svg'
 import { Link } from 'react-router-dom';
-import '../Portfolio/Portfolio.css';
-import  portfolioURL from "./../../../images/portfolio__url.svg";
 
-function Portfolio(props) {
+function Portfolio() {
+
   return (
     <section className='portfolio'>
       <h3 className='portfolio__title'>Портфолио</h3>
@@ -23,7 +23,8 @@ function Portfolio(props) {
         </Link></li>
       </ul>
     </section>
-  );
+  )
 }
 
+// BEM validation done!
 export default Portfolio;
