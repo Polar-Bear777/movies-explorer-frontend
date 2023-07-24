@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import { Route, Routes, useNavigate, Navigate, useLocation } from "react-router-dom";
 import * as Auth from '../../utils/Auth';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -15,6 +15,7 @@ import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute';
 import '../App/App.css';
 
 function App() {
+
   // СТЕЙТ ДЛЯ АВТОРИЗАЦИИ/РЕГИСТРАЦИИ
   const [isloggedIn, setIsloggedIn] = useState(false);
   const [emailName, setEmailName] = useState(null);
@@ -22,7 +23,38 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   // NAVIGATE
   const navigate = useNavigate();
-  
+  const location = useLocation();
+
+  // ПОСЛЕ ПЕРЕЗАГРУЗКИ СТРАНИЦЫ, НЕ ТРЕБУЕТСЯ АВТОРИЗАЦИЯ
+  useEffect(() => {
+    function handleTokenCheck() {
+      const jwt = localStorage.getItem('jwt');
+      const lastPage = localStorage.getItem('lastPage');
+      const currentPath = location.pathname;
+      if (jwt) {
+        return Auth
+          .getToken(jwt).then((res) => {
+          setIsloggedIn(true)
+          setCurrentUser({
+            ...currentUser,
+            ...res
+          });
+        })
+          .then(() => {
+            navigate(currentPath || lastPage, { replace: true })
+          })
+          .catch(err => {
+            console.error(err);
+          })
+      }
+    }
+
+    // ПРОВЕРКА НА ТОКЕН
+    handleTokenCheck()
+
+    return () => { }
+  }, []);
+
   // РЕГИСТРАЦИЯ
   function onRegister(name, email, password, e) {
     Auth
