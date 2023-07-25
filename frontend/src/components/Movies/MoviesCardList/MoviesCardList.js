@@ -15,10 +15,12 @@ function MoviesCardList({ movie }) {
     <section className='movieCardList'>
       <ul className='movieCardList__list'>
         {movie.map((item) => {
-          return <li className='movieCardList__lists'><MoviesCard key={item.id} name={item.nameRU}
-          image={`${apiMovieConfig.defaultURL}${item.image.url}`}
-          link={item.trailerLink}
-          duaration={item.duration} /></li>
+          return <li className='movieCardList__lists'><MoviesCard
+            key={item.id}
+            name={item.nameRU}
+            image={`${apiMovieConfig.defaultURL}${item.image.url}`}
+            link={item.trailerLink}
+            duration={item.duration} /></li>
         })}
       </ul>
       {isNeedMoreButton ?
