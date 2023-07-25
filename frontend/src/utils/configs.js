@@ -12,7 +12,3 @@ export const apiMovieConfig = {
     getMovies: 'https://api.nomoreparties.co/beatfilm-movies',
     defaultURL: 'https://api.nomoreparties.co',
 }
-
-module.exports = {
-    apiMainConfig, apiMovieConfig
-}

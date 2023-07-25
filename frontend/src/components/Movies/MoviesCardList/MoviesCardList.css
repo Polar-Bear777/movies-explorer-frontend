@@ -21,6 +21,10 @@
   margin: 0;
 }
 
+.movieCardList__lists {
+  width: 100%;
+}
+
 .movieCardList__item {
   width: 100%;
 }

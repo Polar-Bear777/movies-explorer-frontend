@@ -92,13 +92,3 @@ export const getUserMovies = () => {
     })
         .then(checkResponse);
 }
-
-module.exports = {
-    signIn,
-    signUp,
-    signOut,
-    deleteMovie,
-    saveMovie,
-    setUserData,
-    getUserMovies,
-  };

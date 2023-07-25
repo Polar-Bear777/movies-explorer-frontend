@@ -1,16 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
+import { apiMovieConfig } from '../../../utils/configs'
 
-function MoviesCardList({ inSaveMovies, isNeedMoreButton }) {
+function MoviesCardList({ movie }) {
+  const location = useLocation();
+
+  const inSaveMovies = location.pathname === '/saved-movies';
+  const isNeedMoreButton = !inSaveMovies
+
 
   return (
     <section className='movieCardList'>
       <ul className='movieCardList__list'>
-        <li className='movieCardList__item'><MoviesCard inSaveMovies={inSaveMovies} name={'В погоне заВ погоне за БенксиВ погоне за БенксиВ погоне за Бенкси Бенкси'} /></li>
-       
-
-        <li className='movieCardList__item'><MoviesCard inSaveMovies={inSaveMovies} name={'long-long-long-long-long-long-long-long-long- long-long-long-long-long-long-long-long- long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-name'} /></li>
+        {movie.map((item) => {
+          return <li className='movieCardList__lists'><MoviesCard key={item.id} name={item.nameRU}
+          image={`${apiMovieConfig.defaultURL}${item.image.url}`}
+          link={item.trailerLink}
+          duaration={item.duration} /></li>
+        })}
       </ul>
       {isNeedMoreButton ?
         <>
@@ -18,9 +27,9 @@ function MoviesCardList({ inSaveMovies, isNeedMoreButton }) {
             <button type='button' className='movieCardList__button-more'>Еще</button>
           </div>
         </>
-        : 
+        :
         <>
-        <div className='movieCardList__more movieCardList__more_invisible'>
+          <div className='movieCardList__more movieCardList__more_invisible'>
             <button type='button' className='movieCardList__button-more movieCardList__button-more_invisible'>Еще</button>
           </div>
         </>}
