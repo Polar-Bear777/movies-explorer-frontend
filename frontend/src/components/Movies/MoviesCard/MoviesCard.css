@@ -63,6 +63,10 @@
   background-image: url(../../../images/delete_icon.svg);
 }
 
+.moviesCard__like_default {
+  background-image: url(../../../images/like__default.svg);
+}
+
 .moviesCard__like:hover {
   opacity: .8;
   cursor: pointer;

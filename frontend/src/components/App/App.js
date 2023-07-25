@@ -18,7 +18,6 @@ function App() {
 
   // СТЕЙТ ДЛЯ АВТОРИЗАЦИИ/РЕГИСТРАЦИИ
   const [isloggedIn, setIsloggedIn] = useState(false);
-  // const [emailName, setEmailName] = useState(null);
   // СТЕЙТ ДЛЯ ПОЛУЧЕНИЯ ПОЛЬЗОВАТЕЛЯ
   const [currentUser, setCurrentUser] = useState({});
   // NAVIGATE
@@ -103,7 +102,8 @@ function App() {
             onEdit={onEdit}
             isloggedIn={isloggedIn}
             onSetIsloggedIn={() => { setIsloggedIn(false) }}
-            onSetCurrentUser={setCurrentUser} />} />
+            onSetCurrentUser={setCurrentUser} />} 
+          />
 
           <Route path='*' element={<NotFound />} />
 

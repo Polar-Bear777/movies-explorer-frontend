@@ -3,20 +3,27 @@ import { useLocation } from 'react-router-dom';
 import './SearchForm.css';
 
 function SearchForm({ onSearch }) {
-  const [searchQuery, setSearchQuery] = useState('');
+
+  // СТЕЙТ ЗАПРОСА
+  const [searchString, setSearchString] = useState('');
+  // СТЕЙТ ЧЕКБОКСА
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleInputChange = (e) => {
-    setSearchQuery(e.target.value);
+  // ОБРАБОТКА ИЗМЕНЕНИЯ ИНПУТА
+  const handleInputEdit = (e) => {
+    setSearchString(e.target.value);
   };
 
-  const handleCheckboxChange = (e) => {
+  // ОБРАБОТКА ЧЕКБОКСА
+  const handleCheckboxEdit = (e) => {
     setIsChecked(e.target.checked);
+    onSearch(searchString, isChecked)
   };
 
+  // ОБРАБОТКА ПОИСКА
   function handleSearch(e) {
     e.preventDefault();
-    onSearch(searchQuery, isChecked)
+    onSearch(searchString, isChecked)
   }
 
   return (
@@ -24,7 +31,7 @@ function SearchForm({ onSearch }) {
       <form className='search-form__blocks' noValidate onSubmit={handleSearch}>
         <div className='search-form__block-input'>
           <input
-            onChange={handleInputChange}
+            onChange={handleInputEdit}
             maxLength={24}
             required
             placeholder='Фильм'
@@ -39,7 +46,7 @@ function SearchForm({ onSearch }) {
             type='checkbox'
             id='search-form__checkbox'
             className='search-form__checkbox'
-            onChange={handleCheckboxChange}
+            onChange={handleCheckboxEdit}
           ></input>
           <label htmlFor='search-form__checkbox'></label>
           <p className='search-form__checkbox-description'>Короткометражки</p>
