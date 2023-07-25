@@ -1,52 +1,51 @@
 import './Profile.css'
 import Header from '../Header/Header';
-import { useState} from 'react';
+
+import { useState, useContext } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+
 import { useNavigate } from 'react-router-dom';
 
-function Profile({ isloggedIn }) {
-  const navigate = useNavigate();
+function Profile({ isloggedIn, onEdit }) {
+  // const navigate = useNavigate();
 
-  const [formValue, setFormValue] = useState({});
-  const [formErrorMessage, setFormErrorMessage] = useState({});
-  const [gonnaEdit, setGonnaEdit] = useState(false)
+  const userData = useContext(CurrentUserContext);
 
-  function handleChangeName(e) {
-    const { name, value } = e.target;
-    setFormValue({
-      ...formValue,
-      [name]: value
-    });
+  const [name, setName] = useState(userData.name || '');
+  const [email, setEmail] = useState(userData.email || '');
+  const [disabledInput, setDisabledInput] = useState(true);
 
-    setFormErrorMessage({
-      ...formErrorMessage,
-      [name]: e.target.validationMessage
-    });
+  // const [formValue, setFormValue] = useState({});
+  // const [formErrorMessage, setFormErrorMessage] = useState({});
+  // const [gonnaEdit, setGonnaEdit] = useState(false)
+
+  function handleEditName(e) {
+    setName(e.target.value)
+    // setFormErrorMessage({
+    //   ...formErrorMessage,
+    //   [name]: e.target.validationMessage
+    // });
   }
 
-  function handleChangeEmail(e) {
-    const { name, value } = e.target;
-    setFormValue({
-      ...formValue,
-      [name]: value
-    });
-
-    setFormErrorMessage({
-      ...formErrorMessage,
-      [name]: e.target.validationMessage
-    });
+  function handleEditEmail(e) {
+    setEmail(e.target.value)
+    // setFormErrorMessage({
+    //   ...formErrorMessage,
+    //   [name]: e.target.validationMessage
+    // });
   }
 
-  const goExit = () => {
-    navigate('/')
-  }
+  // const goExit = () => {
+  //   navigate('/')
+  // }
 
-  const handelEdit = () => {
-    const inputs = document.querySelectorAll('.profile__input');
-    inputs.forEach(input => {
-      input.disabled = false;
-    });
-    setGonnaEdit(true);
-  }
+  // const handelEdit = () => {
+  //   const inputs = document.querySelectorAll('.profile__input');
+  //   inputs.forEach(input => {
+  //     input.disabled = false;
+  //   });
+  //   setGonnaEdit(true);
+  // }
 
   return (
     <>
@@ -58,38 +57,38 @@ function Profile({ isloggedIn }) {
             <div className='profile__block-input'>
               <label className='profile__input-label' htmlFor='profile__input_name'>Имя</label>
               <input name='name'
-                // disabled='true'
-                onChange={handleChangeName}
+                onChange={handleEditName}
                 type='text'
-                placeholder='Владислав'
+                value={name}
                 required
+                disabled={disabledInput}
                 minLength={2}
                 maxLength={18}
                 className='profile__input profile__input_name'
                 id='profile__input_name'></input>
-              <span className={formErrorMessage.name === 'undefined' ? 'profile__error-invisible' : 'profile__error'}>{formErrorMessage.name || ''}</span>
+              {/* <span className={formErrorMessage.name === 'undefined' ? 'profile__error-invisible' : 'profile__error'}>{formErrorMessage.name  ''}</span> */}
             </div>
             <div className='profile__block-input'>
               <label className='profile__input-label' htmlFor='profile__input_email'>E-mail</label>
               <input name='email'
-                // disabled='true'
                 type='email'
+                value={email}
                 required
-                onChange={handleChangeEmail}
-                placeholder='pochta@yandex.ru'
+                disabled={disabledInput}
+                onChange={handleEditEmail}
                 className='profile__input profile__input_email'
                 id='profile__input_email'></input>
-              <span className={formErrorMessage.email === 'undefined' ? 'profile__error-invisible' : 'profile__error'}>{formErrorMessage.email || ''}</span>
+              {/* <span className={formErrorMessage.email === 'undefined' ? 'profile__error-invisible' : 'profile__error'}>{formErrorMessage.email  ''}</span> */}
             </div>
-            {gonnaEdit ?
+            {/* {gonnaEdit ?
               <>
                 <span className='profile__submit-error profile__submit-error_invisible'>При обновлении профиля произошла ошибка.</span>
                 <button type='button' className='profile__button-save'>Сохранить</button>
               </> :
               <button onClick={handelEdit} type='button' className='profile__button-edit'>Редактировать</button>
-            }
+            } */}
           </form>
-          <button onClick={goExit} type='button' className={gonnaEdit ? 'profile__button-exit profile__button-exit_invisible' : 'profile__button-exit'}>Выйти из аккаунта</button>
+          {/* <button onClick={goExit} type='button' className={gonnaEdit ? 'profile__button-exit profile__button-exit_invisible' : 'profile__button-exit'}>Выйти из аккаунта</button> */}
         </section>
       </main>
     </>

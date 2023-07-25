@@ -18,7 +18,6 @@ function App() {
 
   // СТЕЙТ ДЛЯ АВТОРИЗАЦИИ/РЕГИСТРАЦИИ
   const [isloggedIn, setIsloggedIn] = useState(false);
-  const [emailName, setEmailName] = useState(null);
   // СТЕЙТ ДЛЯ ПОЛУЧЕНИЯ ПОЛЬЗОВАТЕЛЯ
   const [currentUser, setCurrentUser] = useState({});
   // NAVIGATE
@@ -30,7 +29,6 @@ function App() {
     Auth
       .registerUser(name, email, password)
       .then(() => {
-        navigate("/sign-in");
         e.target.reset()
       })
       .catch(err => alert(err))
@@ -38,19 +36,33 @@ function App() {
 
   // ВХОД
   function onLogin(email, password, e) {
-    Auth
+    return Auth
       .loginUser(email, password)
       .then((res) => {
         localStorage.setItem("jwt", res.token);
+
         setIsloggedIn(true);
-        setEmailName(email);
-        navigate("/");
+
+        navigate("/movies", { replace: true })
         e.target.reset()
       })
       .catch(err => alert(err))
   }
 
-  // ПРОВЕРКА АЛГОРИТМ ТОКЕНА
+  // ИЗМЕНЕНИЕ АККАУНТА
+  function onEdit(name, email) {
+    return Auth.editUser(name, email)
+      .then((res) => {
+        setCurrentUser({
+          ...currentUser,
+          ...res
+        })
+        navigate("/movies", { replace: true })
+      })
+      .catch((err) => console.log(err))
+  }
+
+  // ПРОВЕРКА АЛГОРИТМА ТОКЕНА
   function handleTokenCheck() {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
@@ -87,7 +99,7 @@ function App() {
 
           <Route path='/movies' element={<ProtectedRouteElement loggedIn={isloggedIn} element={Movies} isloggedIn={isloggedIn} />} />
 
-          <Route path='/profile' element={<ProtectedRouteElement loggedIn={isloggedIn} element={Profile} isloggedIn={isloggedIn} />} />
+          <Route path='/profile' element={<ProtectedRouteElement loggedIn={isloggedIn} element={Profile} onEdit={onEdit} isloggedIn={isloggedIn} />} />
 
           <Route path='*' element={<NotFound />} />
 
