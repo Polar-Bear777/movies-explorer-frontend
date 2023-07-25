@@ -1,58 +1,75 @@
 import './Profile.css'
 import Header from '../Header/Header';
-
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-
 import { useNavigate } from 'react-router-dom';
 
-function Profile({ isloggedIn, onEdit }) {
-  // const navigate = useNavigate();
+function Profile({ isloggedIn, onEdit, onSetIsloggedIn }) {
+  const navigate = useNavigate();
 
   const userData = useContext(CurrentUserContext);
 
+  // СТЕЙТЫ ИНПУТОВ
   const [name, setName] = useState(userData.name || '');
   const [email, setEmail] = useState(userData.email || '');
+  const [nameError, setNameError] = useState('');
+  const [emailError, setEmailError] = useState('');
+
+  // СТЕЙТЫ ИНПУТОВ ВАЛИДАЦИИ
+  const [nameValid, setNameValid] = useState(true);
+  const [emailValid, setEmailValid] = useState(true);
   const [disabledInput, setDisabledInput] = useState(true);
 
-  // const [formValue, setFormValue] = useState({});
-  // const [formErrorMessage, setFormErrorMessage] = useState({});
-  // const [gonnaEdit, setGonnaEdit] = useState(false)
+  // СТЕЙТ ИЗМЕНЕНИЯ КНОПКИ
+  const [isProfileEdit, setIsProfileEdit] = useState(false);
 
+  // ЛОГИКА ПРОВЕРКИ ВАЛИДАЦИИ
+  const disabledSubmiter = nameValid && emailValid
+
+  useEffect(() => {
+    if (userData.name === name && userData.email === email) {
+      setNameValid(false)
+    } else setNameValid(true)
+  }, [name, email])
+
+  // ИЗМЕНИТЬ ИМЯ
   function handleEditName(e) {
     setName(e.target.value)
-    // setFormErrorMessage({
-    //   ...formErrorMessage,
-    //   [name]: e.target.validationMessage
-    // });
+    setNameError(e.target.validationMessage)
+    setNameValid(e.target.validity.valid)
   }
 
+  // ИЗМЕНИТЬ ПОЧТУ
   function handleEditEmail(e) {
     setEmail(e.target.value)
-    // setFormErrorMessage({
-    //   ...formErrorMessage,
-    //   [name]: e.target.validationMessage
-    // });
+    setEmailError(e.target.validationMessage)
+    setEmailValid(e.target.validity.valid)
   }
 
-  // const goExit = () => {
-  //   navigate('/')
-  // }
+  // ИЗМЕНИТЬ КНОПКУ
+  function hanldeConditionEdit() {
+    setDisabledInput(false);
+    setIsProfileEdit(true);
+  }
 
-  // const handelEdit = () => {
-  //   const inputs = document.querySelectorAll('.profile__input');
-  //   inputs.forEach(input => {
-  //     input.disabled = false;
-  //   });
-  //   setGonnaEdit(true);
-  // }
+  // ВЫХОД ИЗ ПРОФИЛЯ
+  function handleCheckOut() {
+    localStorage.clear();
+    onSetIsloggedIn();
+    navigate('/', { replace: true });
+  }
+
+  // ИЗМЕНИТЬ РЕДАКТИРОВАНИЕ ПРОФИЛЯ
+  function handleEditAccount() {
+    return onEdit(name, email)
+  }
 
   return (
     <>
       <Header isloggedIn={isloggedIn} />
       <main className='profile'>
         <section className='profile__blocks'>
-          <h1 className='profile__title'>Привет, Владислав!</h1>
+          <h1 className='profile__title'>{`Привет, ${userData.name}!`}</h1>
           <form className='profile__form'>
             <div className='profile__block-input'>
               <label className='profile__input-label' htmlFor='profile__input_name'>Имя</label>
@@ -66,7 +83,7 @@ function Profile({ isloggedIn, onEdit }) {
                 maxLength={18}
                 className='profile__input profile__input_name'
                 id='profile__input_name'></input>
-              {/* <span className={formErrorMessage.name === 'undefined' ? 'profile__error-invisible' : 'profile__error'}>{formErrorMessage.name  ''}</span> */}
+              <span className={nameError === 'undefined' ? 'profile__error-invisible' : 'profile__error'}>{nameError || ''}</span>
             </div>
             <div className='profile__block-input'>
               <label className='profile__input-label' htmlFor='profile__input_email'>E-mail</label>
@@ -78,17 +95,17 @@ function Profile({ isloggedIn, onEdit }) {
                 onChange={handleEditEmail}
                 className='profile__input profile__input_email'
                 id='profile__input_email'></input>
-              {/* <span className={formErrorMessage.email === 'undefined' ? 'profile__error-invisible' : 'profile__error'}>{formErrorMessage.email  ''}</span> */}
+              <span className={emailError === 'undefined' ? 'profile__error-invisible' : 'profile__error'}>{emailError || ''}</span>
             </div>
-            {/* {gonnaEdit ?
+            {isProfileEdit ?
               <>
                 <span className='profile__submit-error profile__submit-error_invisible'>При обновлении профиля произошла ошибка.</span>
-                <button type='button' className='profile__button-save'>Сохранить</button>
+                <button onClick={handleEditAccount} disabled={!disabledSubmiter} type='button' className='profile__button-save'>Сохранить</button>
               </> :
-              <button onClick={handelEdit} type='button' className='profile__button-edit'>Редактировать</button>
-            } */}
+              <button onClick={hanldeConditionEdit} type='button' className='profile__button-edit'>Редактировать</button>
+            }
           </form>
-          {/* <button onClick={goExit} type='button' className={gonnaEdit ? 'profile__button-exit profile__button-exit_invisible' : 'profile__button-exit'}>Выйти из аккаунта</button> */}
+          <button onClick={handleCheckOut} type='button' className={isProfileEdit ? 'profile__button-exit profile__button-exit_invisible' : 'profile__button-exit'}>Выйти из аккаунта</button>
         </section>
       </main>
     </>
