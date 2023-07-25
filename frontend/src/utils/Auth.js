@@ -53,8 +53,7 @@ export const editUser = (name, email) => {
 };
 
 // ПОЛУЧЕНИЕ ТОКЕНА
-export function getToken() {
-  const token = localStorage.getItem("jwt");
+export function getToken(token) {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {

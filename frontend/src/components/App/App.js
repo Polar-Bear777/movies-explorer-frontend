@@ -25,36 +25,6 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // ПОСЛЕ ПЕРЕЗАГРУЗКИ СТРАНИЦЫ, НЕ ТРЕБУЕТСЯ АВТОРИЗАЦИЯ
-  useEffect(() => {
-    function handleTokenCheck() {
-      const jwt = localStorage.getItem('jwt');
-      const lastPage = localStorage.getItem('lastPage');
-      const currentPath = location.pathname;
-      if (jwt) {
-        return Auth
-          .getToken(jwt).then((res) => {
-          setIsloggedIn(true)
-          setCurrentUser({
-            ...currentUser,
-            ...res
-          });
-        })
-          .then(() => {
-            navigate(currentPath || lastPage, { replace: true })
-          })
-          .catch(err => {
-            console.error(err);
-          })
-      }
-    }
-
-    // ПРОВЕРКА НА ТОКЕН
-    handleTokenCheck()
-
-    return () => { }
-  }, []);
-
   // РЕГИСТРАЦИЯ
   function onRegister(name, email, password, e) {
     Auth
@@ -66,8 +36,8 @@ function App() {
       .catch(err => alert(err))
   }
 
-   // ВХОД
-   function onLogin(email, password, e) {
+  // ВХОД
+  function onLogin(email, password, e) {
     Auth
       .loginUser(email, password)
       .then((res) => {
@@ -79,6 +49,28 @@ function App() {
       })
       .catch(err => alert(err))
   }
+
+  // ПРОВЕРКА АЛГОРИТМ ТОКЕНА
+  function handleTokenCheck() {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      return Auth.getToken(jwt)
+        .then((res) => {
+          setIsloggedIn(true);
+
+          setCurrentUser(res);
+          console.log(res)
+        })
+        .then(() => {
+          navigate(location, { replace: true })
+        })
+        .catch(err => console.log(err))
+    }
+  }
+
+  useEffect(() => {
+    handleTokenCheck()
+  }, []);
 
   return (
     <div className="app-page">
