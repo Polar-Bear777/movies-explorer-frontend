@@ -1,9 +1,9 @@
-import { mainApiConfig } from './configs';
+import { apiMainConfig } from './configs';
 import { checkResponse } from './Auth';
 
 // ВХОД
 export const signIn = ({ password, email }) => {
-    return fetch(mainApiConfig.signIn, {
+    return fetch(apiMainConfig.signIn, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -19,7 +19,7 @@ export const signIn = ({ password, email }) => {
 
 // РЕГИСТРАЦИЯ
 export const signUp = ({ name, password, email }) => {
-    return fetch(mainApiConfig.signUp, {
+    return fetch(apiMainConfig.signUp, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -36,7 +36,7 @@ export const signUp = ({ name, password, email }) => {
 
 // ВЫХОД
 export const signOut = () => {
-    return fetch(mainApiConfig.signOut, {
+    return fetch(apiMainConfig.signOut, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -48,7 +48,7 @@ export const signOut = () => {
 
 // УДАЛИТЬ ФИЛЬМ
 export const deleteMovie = (id) => {
-    return fetch(`${mainApiConfig.moviesData}/${id}`, {
+    return fetch(`${apiMainConfig.moviesData}/${id}`, {
         method: 'DELETE',
         credentials: 'include'
     })
@@ -57,7 +57,7 @@ export const deleteMovie = (id) => {
 
 // СОХРАНИТЬ ФИЛЬМ
 export const saveMovie = (movie) => {
-    return fetch(mainApiConfig.moviesData, {
+    return fetch(apiMainConfig.moviesData, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -70,7 +70,7 @@ export const saveMovie = (movie) => {
 
 // ПОЛУЧИТЬ ДАННЫЕ ПОЛЬЗОВАТЕЛЯ
 export const setUserData = ({ name, email }) => {
-    return fetch(mainApiConfig.userData, {
+    return fetch(apiMainConfig.userData, {
         method: 'PATCH',
         credentials: 'include',
         headers: {
@@ -86,9 +86,19 @@ export const setUserData = ({ name, email }) => {
 
 // ПОЛУЧИТЬ ДАННЫЕ ФИЛЬМОВ ПОЛЬЗОВАТЕЛЯ
 export const getUserMovies = () => {
-    return fetch(mainApiConfig.moviesData, {
+    return fetch(apiMainConfig.moviesData, {
         method: 'GET',
         credentials: 'include',
     })
         .then(checkResponse);
 }
+
+module.exports = {
+    signIn,
+    signUp,
+    signOut,
+    deleteMovie,
+    saveMovie,
+    setUserData,
+    getUserMovies,
+  };

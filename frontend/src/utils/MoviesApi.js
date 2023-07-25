@@ -8,3 +8,5 @@ export const getMovies = () => {
     })
         .then(checkResponse);
 }
+
+export default getMovies;
