@@ -26,12 +26,12 @@ function App() {
 
   // РЕГИСТРАЦИЯ
   function onRegister(name, email, password, e) {
-    Auth
+   return Auth
       .registerUser(name, email, password)
       .then(() => {
         e.target.reset()
       })
-      .catch(err => alert(err))
+      .catch(err => console.log(err))
   }
 
   // ВХОД
@@ -89,7 +89,7 @@ function App() {
 
           <Route path='/' element={<Main isloggedIn={isloggedIn} />} />
 
-          <Route path='/signup' element={<Registration onRegistration={onRegister} />} />
+          <Route path='/signup' element={<Registration onRegistration={onRegister} onLogin={onLogin} />} />
 
           <Route path='/signin' element={<Login onLogin={onLogin} />} />
 

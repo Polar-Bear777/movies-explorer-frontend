@@ -1,6 +1,8 @@
 import { apiMainConfig } from './configs';
 import { checkResponse } from './Auth';
 
+const BASE_URL = 'https://api.nomoreparties.co'
+
 // ВХОД
 export const signIn = ({ password, email }) => {
     return fetch(apiMainConfig.signIn, {
@@ -59,11 +61,24 @@ export const deleteMovie = (id) => {
 export const saveMovie = (movie) => {
     return fetch(apiMainConfig.moviesData, {
         method: 'POST',
-        credentials: 'include',
         headers: {
+            'authorization': `Bearer ${localStorage.getItem('jwt')}`,
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...movie }),
+        body: JSON.stringify({
+            country: movie.country,
+            director: movie.director,
+            duration: movie.duration,
+            year: movie.year,
+            description: movie.description,
+            image: `${BASE_URL}${movie.image.url}`,
+            trailer: movie.trailerLink,
+            thumbnail: `${BASE_URL}${movie.image.formats.thumbnail.url}`,
+            // movieId: `${movie.id}`,
+            movieId: movie.id + 325,
+            nameRU: movie.nameRU,
+            nameEN: movie.nameEN
+          })
     })
         .then(checkResponse);
 }
@@ -88,7 +103,6 @@ export const setUserData = ({ name, email }) => {
 export const getUserMovies = () => {
     return fetch(apiMainConfig.moviesData, {
         method: 'GET',
-        credentials: 'include',
     })
         .then(checkResponse);
 }

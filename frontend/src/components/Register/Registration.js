@@ -6,7 +6,7 @@ import { useState } from 'react';
 function Registration({ onRegistration, onLogin, setInfoTool, closeInfoTool }) {
   const [formValue, setFormValue] = useState({});
   const [formErrorMessage, setFormErrorMessage] = useState({});
-  
+
   const isFormFieldsValid = !formErrorMessage.name &&
     !formErrorMessage.email &&
     !formErrorMessage.password &&
@@ -56,7 +56,10 @@ function Registration({ onRegistration, onLogin, setInfoTool, closeInfoTool }) {
   function handleSubmit(e) {
     e.preventDefault();
     const { name, email, password } = formValue;
-    onRegistration(name, email, password, e)
+     onRegistration(name, email, password, e)
+      .then(() => {
+        onLogin(email, password, e)
+      })
   }
 
   return (

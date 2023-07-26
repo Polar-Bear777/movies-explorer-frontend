@@ -5,6 +5,7 @@ import MoviesCardList from './MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import { useState, useEffect } from 'react';
 import { getUserMovies, saveMovie, deleteMovie } from '../../utils/MainApi';
+import { getMovies } from '../../utils/MoviesApi';
 
 function Movies({ isloggedIn, closeInfoTool }) {
 
@@ -26,16 +27,18 @@ function Movies({ isloggedIn, closeInfoTool }) {
     return data
   })
 
+  const [isNothingToSee, setIsNothingToSee] = useState(false);
+
   // ПОЛУЧИТЬ ДОСТУП К ФИЛЬМУ
   function getBaetMovie() {
-    return getUserMovies()
+    return getMovies()
       .then((res) => {
         localStorage.setItem('beatMovie', JSON.stringify(res))
         setBeatMovie(res)
       })
       .catch(err => console.log(err))
   }
-
+  // ПОЛУЧИТЬ ВСЕ СОХРАНЕННЫЕ ФИЛЬМЫ
   function getSavedMovies() {
     return getUserMovies()
       .then((res) => {
@@ -62,17 +65,17 @@ function Movies({ isloggedIn, closeInfoTool }) {
         }
       });
 
-      // if (filtered.length === 0) {
-      //   setIsEmptyResult(true)
-      // }
-      // else {
-      //   setIsEmptyResult(false)
-      // }
+      if (filtered.length === 0) {
+        setIsNothingToSee(true)
+      }
+      else {
+        setIsNothingToSee(false)
+      }
 
       localStorage.setItem('result', JSON.stringify(filtered));
       setResulstSearch(filtered);
-    } else getBaetMovie()
-  } 
+    }
+  }
 
   // СОХРАНИТЬ ФИЛЬМ
   function handleSaveMovie(movie) {
@@ -94,22 +97,22 @@ function Movies({ isloggedIn, closeInfoTool }) {
       .catch(err => console.log(err))
   }
 
-  // useEffect(() => {
-  //   getSavedMovies()
-  // }, [])
-
-
   useEffect(() => {
-    console.log('beatMovie', beatMovie)
-    console.log('savedMovie', savedMovie)
-  }, beatMovie, savedMovie)
+    getBaetMovie()
+  }, [])
+
+  // useEffect(() => {
+  //   console.log('beatMovie', beatMovie)
+  //   console.log('savedMovie', savedMovie)
+  // }, beatMovie, savedMovie)
 
   return (
     <>
       <Header isloggedIn={isloggedIn} />
       <main className='main' onClick={closeInfoTool}>
-        <SearchForm onSearch={handleSubmit}/>
-        <MoviesCardList movie={resultSearch}/>
+        <SearchForm onSearch={handleSubmit} />
+        {isNothingToSee && <p>Nothing</p>}
+        {!isNothingToSee && <MoviesCardList onSave={handleSaveMovie} movie={resultSearch} />}
       </main>
       <Footer />
     </>
