@@ -32,6 +32,7 @@
   font-family: 'Inter';
   text-decoration-line: underline;
   color: #fff;
+  cursor: pointer;
 }
 
 /* Точка перелома между 1280 и 768 */
