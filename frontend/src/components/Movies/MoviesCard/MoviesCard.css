@@ -61,10 +61,30 @@
 
 .moviesCard__like_delete {
   background-image: url(../../../images/delete_icon.svg);
+  width: 14px;
+  height: 12px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 0;
+  background-color: #2f2f2f;
+  grid-area: like-icon;
+  align-self: start;
+  margin-top: 10px;
 }
 
 .moviesCard__like_default {
   background-image: url(../../../images/like__default.svg);
+  width: 14px;
+  height: 12px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 0;
+  background-color: #2f2f2f;
+  grid-area: like-icon;
+  align-self: start;
+  margin-top: 10px;
 }
 
 .moviesCard__like:hover {

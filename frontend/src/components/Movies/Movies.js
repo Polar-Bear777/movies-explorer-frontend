@@ -38,15 +38,8 @@ function Movies({ isloggedIn, closeInfoTool }) {
       })
       .catch(err => console.log(err))
   }
-  // ПОЛУЧИТЬ ВСЕ СОХРАНЕННЫЕ ФИЛЬМЫ
-  function getSavedMovies() {
-    return getUserMovies()
-      .then((res) => {
-        localStorage.setItem('savedMovie', JSON.stringify(res))
-        setSavedMovie(res)
-      })
-      .catch(err => console.log(err))
-  }
+
+
 
   // НАЙТИ ФИЛЬМ
   function handleSubmit(query, shortMovieState) {
@@ -86,9 +79,14 @@ function Movies({ isloggedIn, closeInfoTool }) {
       .catch(err => console.log(err))
   }
 
+  useEffect(() => {
+    localStorage.setItem('savedMovie', JSON.stringify(savedMovie))
+  }, [savedMovie])
+
   // УДАЛИТЬ ФИЛЬМ
   function handleDeleteMovie(movie) {
-    const movieId = savedMovie.find((item) => (movie.id.toSting()) === item.movieId)._id
+    const movieId = savedMovie.find((item) => (movie.id) === item.movieId)._id
+    console.log(movieId)
     return deleteMovie(movieId)
       .then(res => {
         const newArr = savedMovie.filter((item) => item._id !== movieId)
@@ -106,13 +104,16 @@ function Movies({ isloggedIn, closeInfoTool }) {
   //   console.log('savedMovie', savedMovie)
   // }, beatMovie, savedMovie)
 
+
+  // const shortMovieState = JSON.parse(localStorage.getItem('shortMovieState'));
+
   return (
     <>
       <Header isloggedIn={isloggedIn} />
       <main className='main' onClick={closeInfoTool}>
-        <SearchForm onSearch={handleSubmit} />
+        <SearchForm shortMovieState={localStorage.getItem('shortMovieState') || false} query={localStorage.getItem('query') || ''} onSearch={handleSubmit} />
         {isNothingToSee && <p className='search-form__nothing'>Ничего не найдено</p>}
-        {!isNothingToSee && <MoviesCardList onSave={handleSaveMovie} movie={resultSearch} />}
+        {!isNothingToSee && <MoviesCardList onDelete={handleDeleteMovie} onSave={handleSaveMovie} movie={resultSearch} savedMovie={savedMovie} />}
       </main>
       <Footer />
     </>

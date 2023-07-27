@@ -4,7 +4,7 @@ import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import { apiMovieConfig } from '../../../utils/configs'
 
-function MoviesCardList({ movie, onSave }) {
+function MoviesCardList({ movie, onSave, savedMovie, onDelete }) {
   const location = useLocation();
 
   // ЛОГИКА СОХРАНЕНИЯ
@@ -31,13 +31,16 @@ function MoviesCardList({ movie, onSave }) {
         {renderedMovies.map((item) => {
           return <li className='movieCardList__lists'>
             <MoviesCard
+              inSaveMovies={inSaveMovies}
               onSave={() => { onSave(item) }}
+              onDelete={() => { onDelete(item)}}
               key={item.id}
               name={item.nameRU}
-              image={`${apiMovieConfig.defaultURL}${item.image.url}`}
+              image={inSaveMovies? item.image : `${apiMovieConfig.defaultURL}${item.image.url}`}
               link={item.trailerLink}
               duration={item.duration}
               movieId={item.id}
+              savedMovie={savedMovie}
             /></li>
         })}
       </ul>

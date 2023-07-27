@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './SearchForm.css';
 
-function SearchForm({ onSearch }) {
+function SearchForm({ onSearch, shortMovieState, query }) {
 
   // СТЕЙТ ЗАПРОСА
-  const [searchString, setSearchString] = useState('');
+  const [searchString, setSearchString] = useState(query);
   // СТЕЙТ ЧЕКБОКСА
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(shortMovieState);
 
   // ОБРАБОТКА ИЗМЕНЕНИЯ ИНПУТА
   const handleInputEdit = (e) => {
@@ -35,6 +35,7 @@ function SearchForm({ onSearch }) {
             maxLength={24}
             required
             placeholder='Фильм'
+            value={searchString}
             className='search-form__input'
           ></input>
           <button type='submit' className='search-form__button'>
@@ -46,6 +47,7 @@ function SearchForm({ onSearch }) {
             type='checkbox'
             id='search-form__checkbox'
             className='search-form__checkbox'
+            value={isChecked}
             onChange={handleCheckboxEdit}
           ></input>
           <label htmlFor='search-form__checkbox'></label>
