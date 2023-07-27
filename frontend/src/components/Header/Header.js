@@ -41,17 +41,19 @@ function Header({ isloggedIn }) {
 
         <header className={isMainPage?'header header_mainColor':'header' }>
           <Link to='/' className='header__logo-link' > <img alt='логотип проекта' src={headerLogo} className='header__logo' /></Link>
-          <nav>
-            <ul className='header__list'>
-              <li><NavLink to='/movies' className={location.pathname === '/movies' ? 'header__link-active' : 'header__link'}>Фильмы</NavLink></li>
-              <li><NavLink to='/saved-movies' className={location.pathname === '/saved-movies' ? 'header__link-active' : 'header__link'}>Сохранённые фильмы</NavLink></li>
-            </ul>
-          </nav>
-          <button onClick={handleBurgerOpening} className={isMainPage?'header__burger header__burger_mainColor' : 'header__burger' } type='button'></button>
-          <Link to='/profile' className=' header__account-info'>
-            <span className='header__account-name'>Аккаунт</span>
-            <div className='header__account-logo'></div>
-          </Link>
+          <div className='header__blocks'>
+            <nav>
+              <ul className='header__list'>
+                <li><NavLink to='/movies' className={location.pathname === '/movies' ? 'header__link-active' : 'header__link'}>Фильмы</NavLink></li>
+                <li><NavLink to='/saved-movies' className={location.pathname === '/saved-movies' ? 'header__link-active' : 'header__link'}>Сохранённые фильмы</NavLink></li>
+              </ul>
+            </nav>
+            <button onClick={handleBurgerOpening} className={isMainPage?'header__burger header__burger_mainColor' : 'header__burger' } type='button'></button>
+            <Link to='/profile' className=' header__account-info'>
+              <span className='header__account-name'>Аккаунт</span>
+              <div className='header__account-logo'></div>
+            </Link>
+          </div>
         </header > :
 
         <header className='header header_unlogged'>
