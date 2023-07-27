@@ -111,7 +111,7 @@ function Movies({ isloggedIn, closeInfoTool }) {
       <Header isloggedIn={isloggedIn} />
       <main className='main' onClick={closeInfoTool}>
         <SearchForm onSearch={handleSubmit} />
-        {isNothingToSee && <p>Nothing</p>}
+        {isNothingToSee && <p className='search-form__nothing'>Ничего не найдено</p>}
         {!isNothingToSee && <MoviesCardList onSave={handleSaveMovie} movie={resultSearch} />}
       </main>
       <Footer />

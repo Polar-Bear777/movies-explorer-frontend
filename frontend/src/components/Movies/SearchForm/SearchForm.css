@@ -88,6 +88,13 @@
   margin: 0 0 0 14px;
 }
 
+.search-form__nothing {
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+  margin: 0;
+}
+
 /* Точка перелома между 1280 и 768 */
 @media screen and (max-width: 768px) {
   .search-form {
