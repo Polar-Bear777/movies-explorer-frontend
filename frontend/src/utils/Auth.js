@@ -7,7 +7,7 @@ export function checkResponse(res) {
 }
 
 // БЭКЕНД
-export const BASE_URL = 'https://api.bearpolar.nomoredomai.nomoreparties.sbs';
+export const BASE_URL = 'http://localhost:3005';
 
 // АВТОРИЗАЦИЯ
 export const registerUser = (name, email, password) => {

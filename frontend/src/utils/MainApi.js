@@ -7,7 +7,6 @@ const BASE_URL = 'https://api.nomoreparties.co'
 export const signIn = ({ password, email }) => {
     return fetch(apiMainConfig.signIn, {
         method: 'POST',
-        credentials: 'include',
         headers: {
             "Content-Type": "application/json",
         },
@@ -23,7 +22,6 @@ export const signIn = ({ password, email }) => {
 export const signUp = ({ name, password, email }) => {
     return fetch(apiMainConfig.signUp, {
         method: 'POST',
-        credentials: 'include',
         headers: {
             "Content-Type": "application/json"
         },
@@ -40,7 +38,6 @@ export const signUp = ({ name, password, email }) => {
 export const signOut = () => {
     return fetch(apiMainConfig.signOut, {
         method: 'POST',
-        credentials: 'include',
         headers: {
             "Content-Type": "application/json",
         },
@@ -52,7 +49,6 @@ export const signOut = () => {
 export const deleteMovie = (id) => {
     return fetch(`${apiMainConfig.moviesData}/${id}`, {
         method: 'DELETE',
-        credentials: 'include'
     })
         .then(checkResponse);
 }
@@ -74,8 +70,8 @@ export const saveMovie = (movie) => {
             image: `${BASE_URL}${movie.image.url}`,
             trailer: movie.trailerLink,
             thumbnail: `${BASE_URL}${movie.image.formats.thumbnail.url}`,
-            // movieId: `${movie.id}`,
-            movieId: movie.id + 325,
+            movieId: `${movie.id}`,
+            // movieId: movie.id,
             nameRU: movie.nameRU,
             nameEN: movie.nameEN
           })
@@ -87,7 +83,6 @@ export const saveMovie = (movie) => {
 export const setUserData = ({ name, email }) => {
     return fetch(apiMainConfig.userData, {
         method: 'PATCH',
-        credentials: 'include',
         headers: {
             "Content-Type": "application/json",
         },
