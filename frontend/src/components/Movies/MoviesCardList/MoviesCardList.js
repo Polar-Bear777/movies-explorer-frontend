@@ -29,7 +29,7 @@ function MoviesCardList({ movie, onSave }) {
       <ul className='movieCardList__list'>
         {/* Возвращаем фильм */}
         {renderedMovies.map((item) => {
-          return <li className='movieCardList__lists' key={item.id || item._id}>
+          return <li className='movieCardList__lists'>
             <MoviesCard
               onSave={() => { onSave(item) }}
               key={item.id}
@@ -37,6 +37,7 @@ function MoviesCardList({ movie, onSave }) {
               image={`${apiMovieConfig.defaultURL}${item.image.url}`}
               link={item.trailerLink}
               duration={item.duration}
+              movieId={item.id}
             /></li>
         })}
       </ul>

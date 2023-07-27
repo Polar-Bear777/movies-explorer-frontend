@@ -5,9 +5,6 @@ import React, { useState, useEffect } from 'react';
 // ПЕРЕДАЕМ ПРОПСЫ ДЛЯ ФИЛЬМОВ
 function MoviesCard({ SavedMovies, name, image, link, duration, onSave }) {
 
-// function saveMovie() {
-//   onSave();
-// }
 
   return (
     <div className='moviesCard'>

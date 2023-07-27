@@ -7,12 +7,18 @@ import Footer from '../Footer/Footer';
 
 function SavedMovies({ isloggedIn }) {
 
+  // ПОЛУЧИТЬ СОХРАНЕННЫЕ ФИЛЬМЫ
+  const [savedMovie, setSavedMovie] = useState(() => {
+    const data = JSON.parse(localStorage.getItem('savedMovie')) || []
+    return data
+  });
+
   return (
     <>
       <Header isloggedIn={isloggedIn} />
       <main className='savedMovies'>
         <SearchForm />
-        <MoviesCardList inSaveMovies={true} isNeedMoreButton={false} />
+        <MoviesCardList inSaveMovies={true} isNeedMoreButton={false} movie={savedMovie}/>
       </main>
       <Footer />
     </>
