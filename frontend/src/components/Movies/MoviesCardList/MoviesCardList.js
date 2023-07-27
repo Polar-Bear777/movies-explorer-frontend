@@ -9,7 +9,7 @@ function MoviesCardList({ movie, onSave }) {
 
   // ЛОГИКА СОХРАНЕНИЯ
   const inSaveMovies = location.pathname === '/saved-movies';
-  const stillButton = !inSaveMovies
+  const showMoreButton = !inSaveMovies
 
   const [movieToRender, setMovieToRender] = useState(8);
 
@@ -29,7 +29,7 @@ function MoviesCardList({ movie, onSave }) {
       <ul className='movieCardList__list'>
         {/* Возвращаем фильм */}
         {renderedMovies.map((item) => {
-          return <li className='movieCardList__lists'>
+          return <li className='movieCardList__lists' key={item.id || item._id}>
             <MoviesCard
               onSave={() => { onSave(item) }}
               key={item.id}
@@ -41,7 +41,7 @@ function MoviesCardList({ movie, onSave }) {
         })}
       </ul>
       {/* Проверка условия "ЕЩЕ" */}
-      {stillButton ? movie.length > movieToRender && (
+      {showMoreButton ? movie.length > movieToRender && (
         <>
           <div className='movieCardList__more'>
             <button onClick={handleMoreButton} type='button' className='movieCardList__button-more'>Еще</button>
