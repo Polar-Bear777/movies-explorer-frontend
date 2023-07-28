@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react';
+// App.js главный файл
 import { Route, Routes, useNavigate, Navigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from 'react';
 import * as Auth from '../../utils/Auth';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-import Main from '../Main/Main';
-import Movies from '../Movies/Movies';
 import Registration from '../Register/Registration';
 import Login from '../Login/Login';
 import SavedMovies from '../SavedMovies/SavedMovies';
+import Main from '../Main/Main';
+import Movies from '../Movies/Movies';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute';
@@ -26,12 +27,12 @@ function App() {
 
   // РЕГИСТРАЦИЯ
   function onRegister(name, email, password, e) {
-   return Auth
+    return Auth
       .registerUser(name, email, password)
       .then(() => {
         e.target.reset()
       })
-      .catch(err => console.log(err))
+      
   }
 
   // ВХОД
@@ -46,7 +47,6 @@ function App() {
         navigate("/movies", { replace: true })
         e.target.reset()
       })
-      .catch(err => alert(err))
   }
 
   // ИЗМЕНЕНИЕ АККАУНТА
@@ -59,11 +59,10 @@ function App() {
         })
         navigate("/movies", { replace: true })
       })
-      .catch((err) => console.log(err))
   }
 
   // ПРОВЕРКА АЛГОРИТМА ТОКЕНА
-  function handleTokenCheck() {
+  function handleCheckToken() {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
       return Auth.getToken(jwt)
@@ -79,7 +78,7 @@ function App() {
   }
 
   useEffect(() => {
-    handleTokenCheck()
+    handleCheckToken()
   }, []);
 
   return (
@@ -87,27 +86,23 @@ function App() {
       <CurrentUserContext.Provider value={currentUser} >
         <Routes >
 
+          {/* Роуты */}
           <Route path='/' element={<Main isloggedIn={isloggedIn} />} />
-
           <Route path='/signup' element={<Registration onRegistration={onRegister} onLogin={onLogin} />} />
-
           <Route path='/signin' element={<Login onLogin={onLogin} />} />
-
           <Route path='/saved-movies' element={<ProtectedRouteElement loggedIn={isloggedIn} element={SavedMovies} isloggedIn={isloggedIn} />} />
-
           <Route path='/movies' element={<ProtectedRouteElement loggedIn={isloggedIn} element={Movies} isloggedIn={isloggedIn} />} />
-
           <Route path='/profile' element={<ProtectedRouteElement loggedIn={isloggedIn}
             element={Profile}
             onEdit={onEdit}
             isloggedIn={isloggedIn}
             onSetIsloggedIn={() => { setIsloggedIn(false) }}
-            onSetCurrentUser={setCurrentUser} />} 
+            onSetCurrentUser={setCurrentUser} />}
           />
-
           <Route path='*' element={<NotFound />} />
 
         </Routes>
+        
       </CurrentUserContext.Provider>
     </div>
   );

@@ -1,18 +1,35 @@
-import { useState, useEffect } from 'react';
-import { NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
-import '../Header/Header.css'
-import headerLogo from '../../images/header__logo.svg';
+// Header.js
 import BurgerMenu from '../burgerMenu/BurgerMenu';
+import '../Header/Header.css'
+import { useState, useEffect } from 'react';
+import headerLogo from '../../images/header__logo.svg';
+import { NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
 
 function Header({ isloggedIn }) {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // СТЕЙТ БУРГЕРА
   const [isBurgerOpened, setIsBurgerOpened] = useState(false)
 
-  const isMainPage = location.pathname === '/';
+  // ФУНКЦИЯ ОТКРЫТИЯ БУРГЕРА
+  function handleBurgerOpening() {
+    setIsBurgerOpened(!isBurgerOpened);
+  }
 
-  // Блок скролла
+  // НАВИГАЦИЯ ПО РУЧКАМ РЕГИСТРАЦИИ/АВТОРИЗАЦИИ
+  const goingSignUp = () => {
+    navigate('/signup');
+  };
+
+  const goingSignIn = () => {
+    navigate('/signin');
+  };
+
+  // ПЕРЕМЕННАЯ ДЛЯ НАВИГАЦИИ ХЕДЕРА
+  const onMainPage = location.pathname === '/';
+
+  // БЛОК СКРОЛЛА
   useEffect(() => {
     const body = document.querySelector('body');
 
@@ -23,23 +40,11 @@ function Header({ isloggedIn }) {
     }
   }, [isBurgerOpened])
 
-  function handleBurgerOpening() {
-    setIsBurgerOpened(!isBurgerOpened);
-  }
-
-  const goSignUp = () => {
-    navigate('/signup');
-  };
-
-  const goSignIn = () => {
-    navigate('/signin');
-  };
-
   return (
     <>
       {isloggedIn ?
 
-        <header className={isMainPage?'header header_mainColor':'header' }>
+        <header className={onMainPage?'header header_mainColor':'header' }>
           <Link to='/' className='header__logo-link' > <img alt='логотип проекта' src={headerLogo} className='header__logo' /></Link>
           <div className='header__blocks'>
             <nav>
@@ -48,7 +53,7 @@ function Header({ isloggedIn }) {
                 <li><NavLink to='/saved-movies' className={location.pathname === '/saved-movies' ? 'header__link-active' : 'header__link'}>Сохранённые фильмы</NavLink></li>
               </ul>
             </nav>
-            <button onClick={handleBurgerOpening} className={isMainPage?'header__burger header__burger_mainColor' : 'header__burger' } type='button'></button>
+            <button onClick={handleBurgerOpening} className={onMainPage?'header__burger header__burger_mainColor' : 'header__burger' } type='button'></button>
             <Link to='/profile' className=' header__account-info'>
               <span className='header__account-name'>Аккаунт</span>
               <div className='header__account-logo'></div>
@@ -59,11 +64,11 @@ function Header({ isloggedIn }) {
         <header className='header header_unlogged'>
           <Link to='/' className='header__logo-link'><img alt='логотип' src={headerLogo} /></Link>
           <div className='header__block'>
-            <button onClick={goSignUp} type='button' className='header__button header__button_signIn'>Регистрация</button>
-            <button onClick={goSignIn} type='button' className='header__button header__button_enter'>Войти</button>
+            <button onClick={goingSignUp} type='button' className='header__button header__button_signIn'>Регистрация</button>
+            <button onClick={goingSignIn} type='button' className='header__button header__button_enter'>Войти</button>
           </div>
         </header>}
-      <BurgerMenu isOpened={isBurgerOpened} onClose={handleBurgerOpening} />
+      <BurgerMenu onOpened={isBurgerOpened} isClose={handleBurgerOpening} />
     </>
   )
 }

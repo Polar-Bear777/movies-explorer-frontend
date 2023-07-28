@@ -1,11 +1,13 @@
-import './MoviesCard.css';
+// MoviesCard.js
 import defaultImage from '../../../images/movieCard__poster.png'
 import React, { useState, useEffect } from 'react';
+import './MoviesCard.css';
 
 // ПЕРЕДАЕМ ПРОПСЫ ДЛЯ ФИЛЬМОВ
 function MoviesCard({ SavedMovies, name, image, link, duration, onSave, savedMovie, movieId, onDelete, inSaveMovies }) {
   const [isLiked, setIsLiked] = useState(false)
 
+  // СОХРАНЯЕМ ID
   useEffect(() => {
     if (savedMovie) {
       const result = savedMovie.some((item) => (movieId) === item.movieId)

@@ -1,14 +1,15 @@
+// BurgerMenu.js
 import './BurgerMenu.css';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 
-function BurgerMenu({ isOpened, onClose }) {
+function BurgerMenu({ onOpened, isClose }) {
   const location = useLocation();
 
   return (
     <>
-      {isOpened && <div className="burger-menu__overlay" onClick={onClose}></div>}
-      <div className={isOpened ? 'burger-menu' : 'burger-menu burger-menu_none'}>
-        <button onClick={onClose} className='burger-menu__button-close' type='button'></button>
+      {onOpened && <div className="burger-menu__overlay" onClick={isClose}></div>}
+      <div className={onOpened ? 'burger-menu' : 'burger-menu burger-menu_none'}>
+        <button onClick={isClose} className='burger-menu__button-close' type='button'></button>
         <nav className='burger-menu__nav'>
           <NavLink to='/' className={location.pathname === '/' ? 'burger-menu__link-active' : 'burger-menu__link'}>Главная</NavLink>
           <NavLink to='/movies' className={location.pathname === '/movies' ? 'burger-menu__link-active' : 'burger-menu__link'}>Фильмы</NavLink>

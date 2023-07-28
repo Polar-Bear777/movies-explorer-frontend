@@ -1,3 +1,4 @@
+// MainApi.js
 import { apiMainConfig } from './configs';
 import { checkResponse } from './Auth';
 
@@ -49,6 +50,9 @@ export const signOut = () => {
 export const deleteMovie = (id) => {
     return fetch(`${apiMainConfig.moviesData}/${id}`, {
         method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json",
+        },
     })
         .then(checkResponse);
 }

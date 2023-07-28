@@ -1,9 +1,12 @@
-import './Profile.css'
-import Header from '../Header/Header';
-import { useState, useContext, useEffect } from 'react';
+// Profile.js
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import Header from '../Header/Header';
 import { useNavigate } from 'react-router-dom';
+import { useState, useContext, useEffect } from 'react';
+import './Profile.css'
+import InfoTooltip from '../InfoToolTip/InfoTooltip';
 
+// ФУНКЦИЯ ПРОФИЛЯ
 function Profile({ isloggedIn, onEdit, onSetIsloggedIn }) {
   const navigate = useNavigate();
 
@@ -26,6 +29,15 @@ function Profile({ isloggedIn, onEdit, onSetIsloggedIn }) {
   // ЛОГИКА ПРОВЕРКИ ВАЛИДАЦИИ
   const disabledSubmiter = nameValid && emailValid
 
+  // СТЕЙТЫ INFOTOOLTIP
+  const [isToolTipOpened, setIsTootTipOpened] = useState(false)
+  const [toolTipValues, setToolTipValues] = useState({
+    name: '',
+    title: '',
+    message: ''
+  })
+
+  // ПЕРЕДАЕМ NAME, EMAIL
   useEffect(() => {
     if (userData.name === name && userData.email === email) {
       setNameValid(false)
@@ -62,6 +74,21 @@ function Profile({ isloggedIn, onEdit, onSetIsloggedIn }) {
   // ИЗМЕНИТЬ РЕДАКТИРОВАНИЕ ПРОФИЛЯ
   function handleEditAccount() {
     return onEdit(name, email)
+      .then()
+      .catch(err => {
+        if (err === 'Ошибка: 409') {
+          setToolTipValues({
+            title: false,
+            message: 'Пользователь с таким email уже существует.'
+          })
+        } else {
+          setToolTipValues({
+            title: false,
+            message: 'При обновлении пользователя произошла ошибка.'
+          })
+        }
+        setIsTootTipOpened(true);
+      })
   }
 
   return (
@@ -108,6 +135,11 @@ function Profile({ isloggedIn, onEdit, onSetIsloggedIn }) {
           <button onClick={handleCheckOut} type='button' className={isProfileEdit ? 'profile__button-exit profile__button-exit_invisible' : 'profile__button-exit'}>Выйти из аккаунта</button>
         </section>
       </main>
+      < InfoTooltip onClose={() => setIsTootTipOpened(false)}
+        isOpened={isToolTipOpened}
+        name={toolTipValues.name}
+        title={toolTipValues.title}
+        message={toolTipValues.message} />
     </>
   )
 }

@@ -1,11 +1,12 @@
-import './Movies.css';
+// Movies.js
 import Header from '../Header/Header';
-import SearchForm from './SearchForm/SearchForm';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
+import SearchForm from './SearchForm/SearchForm';
 import Footer from '../Footer/Footer';
-import { useState, useEffect } from 'react';
-import { getUserMovies, saveMovie, deleteMovie } from '../../utils/MainApi';
 import { getMovies } from '../../utils/MoviesApi';
+import { getUserMovies, saveMovie, deleteMovie } from '../../utils/MainApi';
+import { useState, useEffect } from 'react';
+import './Movies.css';
 
 function Movies({ isloggedIn, closeInfoTool }) {
 
@@ -27,8 +28,10 @@ function Movies({ isloggedIn, closeInfoTool }) {
     return data
   })
 
+  // СТЕЙТ ДЛЯ ОТОБРАЖЕНИЯ ФИЛЬМОВ
   const [isNothingToSee, setIsNothingToSee] = useState(false);
-
+  const [isEmptyQuery, setIsEmptyQuery] = useState(false);
+  
   // ПОЛУЧИТЬ ДОСТУП К ФИЛЬМУ
   function getBaetMovie() {
     return getMovies()
@@ -39,32 +42,27 @@ function Movies({ isloggedIn, closeInfoTool }) {
       .catch(err => console.log(err))
   }
 
-
-
   // НАЙТИ ФИЛЬМ
   function handleSubmit(query, shortMovieState) {
     localStorage.setItem('query', query);
     localStorage.setItem('shortMovieState', shortMovieState);
 
-    // УСЛОВИЕ ДЛЯ КОРОТКОМЕТРАЖЕК
-    if (beatMovie.length > 0) {
+    if (query.length === 0) {
+      setIsEmptyQuery(true)
+    } else {
+      setIsEmptyQuery(false)
       const filtered = beatMovie.filter((movie) => {
         const isIncluded = movie.nameRU.toLowerCase().includes(query.toLowerCase());
         const isShort = movie.duration <= 40;
-        if (!shortMovieState) {
+        if (shortMovieState) {
           return isIncluded && isShort;
         } else {
           return isIncluded;
         }
       });
 
-      if (filtered.length === 0) {
-        setIsNothingToSee(true)
-      }
-      else {
-        setIsNothingToSee(false)
-      }
-
+      setIsNothingToSee(filtered.length === 0)
+      
       localStorage.setItem('result', JSON.stringify(filtered));
       setResulstSearch(filtered);
     }
@@ -79,6 +77,7 @@ function Movies({ isloggedIn, closeInfoTool }) {
       .catch(err => console.log(err))
   }
 
+  // СОХРАНЯЕМ В ХРАНИЛИЩЕ
   useEffect(() => {
     localStorage.setItem('savedMovie', JSON.stringify(savedMovie))
   }, [savedMovie])
@@ -86,34 +85,26 @@ function Movies({ isloggedIn, closeInfoTool }) {
   // УДАЛИТЬ ФИЛЬМ
   function handleDeleteMovie(movie) {
     const movieId = savedMovie.find((item) => (movie.id) === item.movieId)._id
-    console.log(movieId)
-    return deleteMovie(movieId)
-      .then(res => {
-        const newArr = savedMovie.filter((item) => item._id !== movieId)
-        setSavedMovie(newArr);
-      })
-      .catch(err => console.log(err))
+    const newArr = savedMovie.filter((item) => item._id !== movieId)
+    setSavedMovie(newArr);
   }
 
+  // ПОЛУЧАЕТ ФИЛЬМ
   useEffect(() => {
     getBaetMovie()
   }, [])
 
-  // useEffect(() => {
-  //   console.log('beatMovie', beatMovie)
-  //   console.log('savedMovie', savedMovie)
-  // }, beatMovie, savedMovie)
-
-
-  // const shortMovieState = JSON.parse(localStorage.getItem('shortMovieState'));
+  // СОХРАНЯЕМ В ХРАНИЛИЩЕ
+  const shortMovieState = localStorage.getItem('shortMovieState');
 
   return (
     <>
       <Header isloggedIn={isloggedIn} />
       <main className='main' onClick={closeInfoTool}>
-        <SearchForm shortMovieState={localStorage.getItem('shortMovieState') || false} query={localStorage.getItem('query') || ''} onSearch={handleSubmit} />
+        <SearchForm shortMovieState={shortMovieState || false} query={localStorage.getItem('query') || ''} onSearch={handleSubmit} />
+        {isEmptyQuery && <p className='search-form__nothing'>Нужно ввести ключевое слово</p>}
         {isNothingToSee && <p className='search-form__nothing'>Ничего не найдено</p>}
-        {!isNothingToSee && <MoviesCardList onDelete={handleDeleteMovie} onSave={handleSaveMovie} movie={resultSearch} savedMovie={savedMovie} />}
+        {!isEmptyQuery && !isNothingToSee && <MoviesCardList onDelete={handleDeleteMovie} onSave={handleSaveMovie} movie={resultSearch} savedMovie={savedMovie} />}
       </main>
       <Footer />
     </>

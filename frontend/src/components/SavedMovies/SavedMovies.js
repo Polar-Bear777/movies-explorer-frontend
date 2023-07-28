@@ -1,10 +1,10 @@
-import './SavedMovies.css'
-import { useState } from 'react';
-import Header from '../Header/Header';
-import SearchForm from '../Movies/SearchForm/SearchForm';
-import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
+// SavedMovies.js
+import { useState, useEffect } from 'react';
 import Footer from '../Footer/Footer';
-import { deleteMovie } from '../../utils/MainApi'
+import SearchForm from '../Movies/SearchForm/SearchForm';
+import Header from '../Header/Header';
+import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
+import './SavedMovies.css'
 
 function SavedMovies({ isloggedIn, onSearch }) {
 
@@ -14,41 +14,44 @@ function SavedMovies({ isloggedIn, onSearch }) {
     return data
   });
 
-  // НАЙТИ ФИЛЬМ
-  function handleSubmit(query, shortMovieState) {
-    localStorage.setItem('query', query);
-    localStorage.setItem('shortMovieState', shortMovieState);
+  // СТЕЙТ РЕЗУЛЬТАТА
+  const [result, setResult] = useState(savedMovie)
+
+
+  // СОХРАНЯЕМ В ХРАНИЛИЩЕ
+  useEffect(() => {
+    localStorage.setItem('savedMovie', JSON.stringify(savedMovie))
+  }, [savedMovie])
+
+  // ПОИСК
+  const handleSearch = (query = '', shortMovieState) => {
+    const filtered = savedMovie.filter((movie) => {
+      const isIncluded = movie.nameRU.toLowerCase().includes(query.toLowerCase());
+      const isShort = movie.duration <= 40;
+      if (shortMovieState) {
+        return isIncluded && isShort;
+      } else {
+        return isIncluded;
+      }
+    })
+    setResult(filtered);
   }
 
    // УДАЛИТЬ ФИЛЬМ
-   function handleDeleteMovie(movie) {
-    console.log('movie',movie)
+   function handleMovieDelete(movie) {
     const movieId = savedMovie.find((item) => (movie.movieId) === item.movieId)._id
-    console.log('movieId',movieId)
-    return deleteMovie(movieId)
-      .then(res => {
-        const newArr = savedMovie.filter((item) => item._id !== movieId)
-        setSavedMovie(newArr);
-      })
-      .catch(err => console.log(err))
+    const newArr = savedMovie.filter((item) => item._id !== movieId)
+    setSavedMovie(newArr);
+    setResult(newArr);
   }
-
-  // ПОЛУЧИТЬ ВСЕ СОХРАНЕННЫЕ ФИЛЬМЫ
-  // function getSavedMovies() {
-  //   return getUserMovies()
-  //     .then((res) => {
-  //       localStorage.setItem('savedMovie', JSON.stringify(res))
-  //       setSavedMovie(res)
-  //     })
-  //     .catch(err => console.log(err))
-  // }
 
   return (
     <>
       <Header isloggedIn={isloggedIn} />
       <main className='savedMovies'>
-        <SearchForm onSearch={handleSubmit} />
-        <MoviesCardList inSaveMovies={true} isNeedMoreButton={false} onDelete={handleDeleteMovie} movie={savedMovie} />
+        <SearchForm onSearch={handleSearch} />
+        <MoviesCardList
+          inSaveMovies={true} isNeedMoreButton={false} onDelete={handleMovieDelete} movie={result} />
       </main>
       <Footer />
     </>

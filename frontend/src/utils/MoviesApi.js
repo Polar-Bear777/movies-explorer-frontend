@@ -1,3 +1,4 @@
+// MoviesApi.js
 import { apiMovieConfig } from './configs';
 import { checkResponse } from './Auth';
 

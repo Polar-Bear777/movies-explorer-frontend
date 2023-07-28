@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+// MoviesCardList.js
 import { useLocation } from 'react-router-dom';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
+import React, { useState, useEffect } from 'react';
 import { apiMovieConfig } from '../../../utils/configs'
 
+// ОТОБРАЖЕНИЕ КАРТОЧЕК
 function MoviesCardList({ movie, onSave, savedMovie, onDelete }) {
   const location = useLocation();
 
@@ -13,6 +15,7 @@ function MoviesCardList({ movie, onSave, savedMovie, onDelete }) {
 
   const [movieToRender, setMovieToRender] = useState(8);
 
+  // ЕСЛИ НАЖЕМЕМ ЕЩЕ
   const handleMoreButton = () => {
     const screenWidth = window.innerWidth;
     if (screenWidth < 768) {
@@ -22,6 +25,7 @@ function MoviesCardList({ movie, onSave, savedMovie, onDelete }) {
     }
   };
 
+  // РЕНДЕР ФИЛЬМОВ
   const renderedMovies = movie.slice(0, movieToRender);
 
   return (

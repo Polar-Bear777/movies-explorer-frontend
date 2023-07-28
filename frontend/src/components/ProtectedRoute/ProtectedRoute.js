@@ -1,5 +1,6 @@
-import React from 'react';
+// ProtectedRoute.js
 import { Navigate } from "react-router-dom";
+import React from 'react';
 
 const ProtectedRouteElement = ({ element: Component, ...props  }) => {
   return (

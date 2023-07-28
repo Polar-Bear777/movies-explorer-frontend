@@ -9,7 +9,7 @@ export function checkResponse(res) {
 // БЭКЕНД
 export const BASE_URL = 'https://api.bearpolar.nomoredomai.nomoreparties.sbs';
 
-// АВТОРИЗАЦИЯ
+// РЕГИСТРАЦИЯ
 export const registerUser = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
@@ -25,7 +25,7 @@ export const registerUser = (name, email, password) => {
   }).then(res => checkResponse(res))
 };
 
-// РЕГИСТРАЦИЯ
+// АВТОРИЗАЦИЯ
 export const loginUser = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
     method: 'POST',

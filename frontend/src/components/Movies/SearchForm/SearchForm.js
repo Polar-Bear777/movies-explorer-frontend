@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+// SearchForm.js
 import { useLocation } from 'react-router-dom';
 import './SearchForm.css';
+import React, { useState } from 'react';
 
+// ФУНКЦИЯ ПОИСКА
 function SearchForm({ onSearch, shortMovieState, query }) {
 
   // СТЕЙТ ЗАПРОСА
@@ -17,13 +19,18 @@ function SearchForm({ onSearch, shortMovieState, query }) {
   // ОБРАБОТКА ЧЕКБОКСА
   const handleCheckboxEdit = (e) => {
     setIsChecked(e.target.checked);
-    onSearch(searchString, isChecked)
+    handleOnSearch(e.target.checked)
   };
 
   // ОБРАБОТКА ПОИСКА
   function handleSearch(e) {
     e.preventDefault();
-    onSearch(searchString, isChecked)
+    handleOnSearch(isChecked)
+  }
+
+  // ПОИСК
+  function handleOnSearch(checkBoxState) {
+    onSearch(searchString, checkBoxState)
   }
 
   return (
@@ -45,10 +52,10 @@ function SearchForm({ onSearch, shortMovieState, query }) {
         <div className='search-form__block-checkbox'>
           <input
             type='checkbox'
-            id='search-form__checkbox'
-            className='search-form__checkbox'
-            value={isChecked}
             onChange={handleCheckboxEdit}
+            className='search-form__checkbox'
+            id='search-form__checkbox'
+            checked={isChecked}
           ></input>
           <label htmlFor='search-form__checkbox'></label>
           <p className='search-form__checkbox-description'>Короткометражки</p>
