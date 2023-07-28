@@ -1,5 +1,5 @@
 // Header.js
-import BurgerMenu from '../burgerMenu/BurgerMenu';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import '../Header/Header.css'
 import { useState, useEffect } from 'react';
 import headerLogo from '../../images/header__logo.svg';
