@@ -20,7 +20,10 @@ function App() {
   // СТЕЙТ ДЛЯ АВТОРИЗАЦИИ/РЕГИСТРАЦИИ
   const [isloggedIn, setIsloggedIn] = useState(false);
   // СТЕЙТ ДЛЯ ПОЛУЧЕНИЯ ПОЛЬЗОВАТЕЛЯ
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(() => {
+    const lastUserData = JSON.parse(localStorage.getItem('lastUser')) || {}
+    return lastUserData
+  });
   // NAVIGATE
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,7 +35,7 @@ function App() {
       .then(() => {
         e.target.reset()
       })
-      
+
   }
 
   // ВХОД
@@ -41,11 +44,16 @@ function App() {
       .loginUser(email, password)
       .then((res) => {
         localStorage.setItem("jwt", res.token);
-
         setIsloggedIn(true);
-
         navigate("/movies", { replace: true })
         e.target.reset()
+        return Auth.getToken(res.token)
+          .then((res) => {
+            setCurrentUser({
+              ...currentUser,
+              ...res
+            });
+          })
       })
   }
 
@@ -68,7 +76,10 @@ function App() {
       return Auth.getToken(jwt)
         .then((res) => {
           setIsloggedIn(true);
-          setCurrentUser(res);
+          setCurrentUser({
+            ...currentUser,
+            ...res
+          });
         })
         .then(() => {
           navigate(location, { replace: true })
@@ -88,8 +99,8 @@ function App() {
 
           {/* Роуты */}
           <Route path='/' element={<Main isloggedIn={isloggedIn} />} />
-          <Route path='/signup' element={<Registration onRegistration={onRegister} onLogin={onLogin} />} />
-          <Route path='/signin' element={<Login onLogin={onLogin} />} />
+          <Route path='/signup' element={<Registration onRegistration={onRegister} onLogin={onLogin} onSetCurrentUser={setCurrentUser} />} />
+          <Route path='/signin' element={<Login onLogin={onLogin} onHandleCheckToken={handleCheckToken} />} />
           <Route path='/saved-movies' element={<ProtectedRouteElement loggedIn={isloggedIn} element={SavedMovies} isloggedIn={isloggedIn} />} />
           <Route path='/movies' element={<ProtectedRouteElement loggedIn={isloggedIn} element={Movies} isloggedIn={isloggedIn} />} />
           <Route path='/profile' element={<ProtectedRouteElement loggedIn={isloggedIn}
@@ -102,7 +113,7 @@ function App() {
           <Route path='*' element={<NotFound />} />
 
         </Routes>
-        
+
       </CurrentUserContext.Provider>
     </div>
   );

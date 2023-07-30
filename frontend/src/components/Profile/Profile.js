@@ -67,7 +67,7 @@ function Profile({ isloggedIn, onEdit, onSetIsloggedIn }) {
   // ВЫХОД ИЗ ПРОФИЛЯ
   function handleCheckOut() {
     localStorage.clear();
-    onSetIsloggedIn();
+    onSetIsloggedIn(false);
     navigate('/', { replace: true });
   }
 

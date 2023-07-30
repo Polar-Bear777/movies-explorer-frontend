@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, json } from 'react-router-dom';
 import './Registration.css'
 import InfoTooltip from '../InfoToolTip/InfoTooltip';
 import { useState } from 'react';
 import logo from '../../images/header__logo.svg';
 
 // ФУНКЦИЯ РЕГИСТРАЦИИ
-function Registration({ onRegistration, onLogin, setInfoTool, closeInfoTool }) {
-  
+function Registration({ onRegistration, onLogin, setInfoTool, closeInfoTool, onSetCurrentUser }) {
+
   // КОНСТАНТЫ
   const [formErrorMessage, setFormErrorMessage] = useState({});
   const [formValue, setFormValue] = useState({});
@@ -77,6 +77,10 @@ function Registration({ onRegistration, onLogin, setInfoTool, closeInfoTool }) {
         })
         setIsTootTipOpened(true);
         onLogin(email, password, e)
+          .then(() => {
+            onSetCurrentUser({ name, email })
+            localStorage.setItem('lastUser', JSON.stringify({ name, email }))
+          })
       })
       .catch(err => {
         if (err === 'Ошибка: 409') {

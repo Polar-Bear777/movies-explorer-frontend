@@ -6,7 +6,7 @@ import logo from '../../images/header__logo.svg';
 import './Login.css';
 
 // АВТОРИЗАЦИЯ
-function Login({ onLogin }) {
+function Login({ onLogin, onHandleCheckToken }) {
   const [formErrorMessage, setFormErrorMessage] = useState({});
   const [formValue, setFormValue] = useState({});
   const isFormFieldsValid = !formErrorMessage.email &&
