@@ -44,9 +44,6 @@ function Movies({ isloggedIn, closeInfoTool }) {
 
   // НАЙТИ ФИЛЬМ
   function handleSubmit(query, shortMovieState) {
-    localStorage.setItem('query', query);
-    localStorage.setItem('shortMovieState', shortMovieState);
-
     if (query.length === 0) {
       setIsEmptyQuery(true)
     } else {
@@ -94,14 +91,11 @@ function Movies({ isloggedIn, closeInfoTool }) {
     getBaetMovie()
   }, [])
 
-  // СОХРАНЯЕМ В ХРАНИЛИЩЕ
-  const shortMovieState = localStorage.getItem('shortMovieState');
-
   return (
     <>
       <Header isloggedIn={isloggedIn} />
       <main className='main' onClick={closeInfoTool}>
-        <SearchForm shortMovieState={shortMovieState || false} query={localStorage.getItem('query') || ''} onSearch={handleSubmit} />
+        <SearchForm onSearch={handleSubmit} />
         {isEmptyQuery && <p className='search-form__nothing'>Нужно ввести ключевое слово</p>}
         {isNothingToSee && <p className='search-form__nothing'>Ничего не найдено</p>}
         {!isEmptyQuery && !isNothingToSee && <MoviesCardList onDelete={handleDeleteMovie} onSave={handleSaveMovie} movie={resultSearch} savedMovie={savedMovie} />}

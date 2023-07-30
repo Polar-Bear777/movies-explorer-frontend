@@ -70,13 +70,12 @@
   top: 0;
   width: 36px;
   height: 20px;
-  background-image: url("../../../images/checkbox_active.svg");
+  background-image: url("../../../images/checkbox_inactive.svg");
   background-size: cover;
 }
 
 .search-form__checkbox:checked+label:before {
-
-  background-image: url("../../../images/checkbox_inactive.svg");
+  background-image: url("../../../images/checkbox_active.svg");
 }
 
 .search-form__checkbox-description {

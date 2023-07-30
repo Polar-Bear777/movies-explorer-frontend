@@ -5,11 +5,27 @@ import React, { useState } from 'react';
 
 // ФУНКЦИЯ ПОИСКА
 function SearchForm({ onSearch, shortMovieState, query }) {
+  const location = useLocation();
+  const inSavedMoviePage = location.pathname === '/saved-movies';
 
   // СТЕЙТ ЗАПРОСА
-  const [searchString, setSearchString] = useState(query);
+  const [searchString, setSearchString] = useState(() => {
+    if (inSavedMoviePage) return ''
+    else {
+      const query = localStorage.getItem('lastQuery') || ''
+      return query
+    }
+  });
+
   // СТЕЙТ ЧЕКБОКСА
-  const [isChecked, setIsChecked] = useState(shortMovieState);
+  const [isChecked, setIsChecked] = useState(() => {
+    if (inSavedMoviePage) return false
+    else {
+      const checkboxState = localStorage.getItem('lastCheckboxState') || false
+      const toBooleanValue = checkboxState === 'true'
+      return toBooleanValue
+    }
+  });
 
   // ОБРАБОТКА ИЗМЕНЕНИЯ ИНПУТА
   const handleInputEdit = (e) => {
@@ -30,6 +46,8 @@ function SearchForm({ onSearch, shortMovieState, query }) {
 
   // ПОИСК
   function handleOnSearch(checkBoxState) {
+    localStorage.setItem('lastQuery', searchString)
+    localStorage.setItem('lastCheckboxState', checkBoxState)
     onSearch(searchString, checkBoxState)
   }
 
