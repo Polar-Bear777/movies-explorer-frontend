@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import './MoviesCard.css';
 
 // ПЕРЕДАЕМ ПРОПСЫ ДЛЯ ФИЛЬМОВ
-function MoviesCard({ SavedMovies, name, image, link, duration, onSave, savedMovie, movieId, onDelete, inSaveMovies }) {
+function MoviesCard({ name, image, link, duration, onSave, savedMovie, movieId, onDelete, inSaveMovies }) {
   const [isLiked, setIsLiked] = useState(false)
 
   // СОХРАНЯЕМ ID

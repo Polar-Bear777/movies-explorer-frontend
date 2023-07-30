@@ -4,7 +4,7 @@ import React from 'react';
 
 const ProtectedRouteElement = ({ element: Component, ...props  }) => {
   return (
-    props.loggedIn ? <Component {...props} /> : <Navigate to='/signin' replace/>
+    props.loggedIn ? <Component {...props} /> : <Navigate to='/' replace/>
 )}
 
 export default ProtectedRouteElement;

@@ -5,6 +5,7 @@ import SearchForm from '../Movies/SearchForm/SearchForm';
 import Header from '../Header/Header';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import './SavedMovies.css'
+import { getUserMovies } from '../../utils/MainApi';
 
 function SavedMovies({ isloggedIn, onSearch }) {
 
@@ -23,6 +24,15 @@ function SavedMovies({ isloggedIn, onSearch }) {
     localStorage.setItem('savedMovie', JSON.stringify(savedMovie))
   }, [savedMovie])
 
+  useEffect(() => {
+    function getUserMovie() {
+      return getUserMovies()
+        .then(res => setSavedMovie(res))
+        .catch(err => console.log('getUserMovies Catch ERROR ->',err))
+    }
+    getUserMovie()
+  }, [])
+
   // ПОИСК
   const handleSearch = (query = '', shortMovieState) => {
     const filtered = savedMovie.filter((movie) => {
@@ -37,8 +47,8 @@ function SavedMovies({ isloggedIn, onSearch }) {
     setResult(filtered);
   }
 
-   // УДАЛИТЬ ФИЛЬМ
-   function handleMovieDelete(movie) {
+  // УДАЛИТЬ ФИЛЬМ
+  function handleMovieDelete(movie) {
     const movieId = savedMovie.find((item) => (movie.movieId) === item.movieId)._id
     const newArr = savedMovie.filter((item) => item._id !== movieId)
     setSavedMovie(newArr);

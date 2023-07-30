@@ -31,7 +31,13 @@ function Movies({ isloggedIn, closeInfoTool }) {
   // СТЕЙТ ДЛЯ ОТОБРАЖЕНИЯ ФИЛЬМОВ
   const [isNothingToSee, setIsNothingToSee] = useState(false);
   const [isEmptyQuery, setIsEmptyQuery] = useState(false);
-  
+
+  // ПОЛУЧАЕТ ФИЛЬМ
+  useEffect(() => {
+    getBaetMovie()
+    getUserMovie()
+  }, [])
+
   // ПОЛУЧИТЬ ДОСТУП К ФИЛЬМУ
   function getBaetMovie() {
     return getMovies()
@@ -40,6 +46,12 @@ function Movies({ isloggedIn, closeInfoTool }) {
         setBeatMovie(res)
       })
       .catch(err => console.log(err))
+  }
+
+  function getUserMovie() {
+    return getUserMovies()
+      .then(res => setSavedMovie(res))
+      .catch(err => console.log('getUserMovies Catch ERROR ->',err))
   }
 
   // НАЙТИ ФИЛЬМ
@@ -59,7 +71,7 @@ function Movies({ isloggedIn, closeInfoTool }) {
       });
 
       setIsNothingToSee(filtered.length === 0)
-      
+
       localStorage.setItem('result', JSON.stringify(filtered));
       setResulstSearch(filtered);
     }
@@ -85,11 +97,6 @@ function Movies({ isloggedIn, closeInfoTool }) {
     const newArr = savedMovie.filter((item) => item._id !== movieId)
     setSavedMovie(newArr);
   }
-
-  // ПОЛУЧАЕТ ФИЛЬМ
-  useEffect(() => {
-    getBaetMovie()
-  }, [])
 
   return (
     <>

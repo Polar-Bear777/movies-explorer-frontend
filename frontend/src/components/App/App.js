@@ -98,8 +98,8 @@ function App() {
 
           {/* Роуты */}
           <Route path='/' element={<Main isloggedIn={isloggedIn} />} />
-          <Route path='/signup' element={<Registration onRegistration={onRegister} onLogin={onLogin} onSetCurrentUser={setCurrentUser} />} />
-          <Route path='/signin' element={<Login onLogin={onLogin} onHandleCheckToken={handleCheckToken} />} />
+          <Route path='/signup' element={isloggedIn ? <Navigate to='/' /> : <Registration onRegistration={onRegister} onLogin={onLogin} onSetCurrentUser={setCurrentUser} />} />
+          <Route path='/signin' element={isloggedIn ? <Navigate to='/' /> : <Login onLogin={onLogin} onHandleCheckToken={handleCheckToken} />} />
           <Route path='/saved-movies' element={<ProtectedRouteElement loggedIn={isloggedIn} element={SavedMovies} isloggedIn={isloggedIn} />} />
           <Route path='/movies' element={<ProtectedRouteElement loggedIn={isloggedIn} element={Movies} isloggedIn={isloggedIn} />} />
           <Route path='/profile' element={<ProtectedRouteElement loggedIn={isloggedIn}
