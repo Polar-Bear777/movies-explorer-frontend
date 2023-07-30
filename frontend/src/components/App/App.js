@@ -65,7 +65,6 @@ function App() {
           ...currentUser,
           ...res.data
         })
-        navigate("/movies", { replace: true })
       })
   }
 

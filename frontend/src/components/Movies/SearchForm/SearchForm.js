@@ -46,9 +46,12 @@ function SearchForm({ onSearch, shortMovieState, query }) {
 
   // ПОИСК
   function handleOnSearch(checkBoxState) {
-    localStorage.setItem('lastQuery', searchString)
-    localStorage.setItem('lastCheckboxState', checkBoxState)
-    onSearch(searchString, checkBoxState)
+    if (inSavedMoviePage) onSearch(searchString, checkBoxState)
+    else {
+      localStorage.setItem('lastQuery', searchString)
+      localStorage.setItem('lastCheckboxState', checkBoxState)
+      onSearch(searchString, checkBoxState)
+    }
   }
 
   return (
