@@ -51,6 +51,7 @@ export const deleteMovie = (id) => {
     return fetch(`${apiMainConfig.moviesData}/${id}`, {
         method: 'DELETE',
         headers: {
+            'authorization': `Bearer ${localStorage.getItem('jwt')}`,
             "Content-Type": "application/json",
         },
     })
@@ -102,6 +103,10 @@ export const setUserData = ({ name, email }) => {
 export const getUserMovies = () => {
     return fetch(apiMainConfig.moviesData, {
         method: 'GET',
+        headers: {
+            'authorization': `Bearer ${localStorage.getItem('jwt')}`,
+            "Content-Type": "application/json",
+        },
     })
         .then(checkResponse);
 }

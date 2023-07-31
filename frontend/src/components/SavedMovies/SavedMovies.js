@@ -5,7 +5,7 @@ import SearchForm from '../Movies/SearchForm/SearchForm';
 import Header from '../Header/Header';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import './SavedMovies.css'
-import { getUserMovies } from '../../utils/MainApi';
+import { getUserMovies, deleteMovie } from '../../utils/MainApi';
 
 function SavedMovies({ isloggedIn, onSearch }) {
 
@@ -28,7 +28,7 @@ function SavedMovies({ isloggedIn, onSearch }) {
     function getUserMovie() {
       return getUserMovies()
         .then(res => setSavedMovie(res))
-        .catch(err => console.log('getUserMovies Catch ERROR ->',err))
+        .catch(err => console.log('getUserMovies Catch ERROR ->', err))
     }
     getUserMovie()
   }, [])
@@ -50,9 +50,13 @@ function SavedMovies({ isloggedIn, onSearch }) {
   // УДАЛИТЬ ФИЛЬМ
   function handleMovieDelete(movie) {
     const movieId = savedMovie.find((item) => (movie.movieId) === item.movieId)._id
-    const newArr = savedMovie.filter((item) => item._id !== movieId)
-    setSavedMovie(newArr);
-    setResult(newArr);
+    return deleteMovie(movieId)
+    .then(() => {
+      const newArr = savedMovie.filter((item) => item._id !== movieId)
+      setSavedMovie(newArr);
+      setResult(newArr);
+    })
+    .catch((err) => console.log('handleMovieDelete ERROR', err))
   }
 
   return (

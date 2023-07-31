@@ -51,7 +51,7 @@ function Movies({ isloggedIn, closeInfoTool }) {
   function getUserMovie() {
     return getUserMovies()
       .then(res => setSavedMovie(res))
-      .catch(err => console.log('getUserMovies Catch ERROR ->',err))
+      .catch(err => console.log('getUserMovies Catch ERROR ->', err))
   }
 
   // НАЙТИ ФИЛЬМ
@@ -94,8 +94,12 @@ function Movies({ isloggedIn, closeInfoTool }) {
   // УДАЛИТЬ ФИЛЬМ
   function handleDeleteMovie(movie) {
     const movieId = savedMovie.find((item) => (movie.id) === item.movieId)._id
-    const newArr = savedMovie.filter((item) => item._id !== movieId)
-    setSavedMovie(newArr);
+    return deleteMovie(movieId)
+      .then(() => {
+        const newArr = savedMovie.filter((item) => item._id !== movieId)
+        setSavedMovie(newArr);
+      })
+      .catch((err) => console.log('handleMovieDelete ERROR', err))
   }
 
   return (
