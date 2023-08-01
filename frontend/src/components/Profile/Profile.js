@@ -74,7 +74,13 @@ function Profile({ isloggedIn, onEdit, onSetIsloggedIn }) {
   // ИЗМЕНИТЬ РЕДАКТИРОВАНИЕ ПРОФИЛЯ
   function handleEditAccount() {
     return onEdit(name, email)
-      .then()
+      .then(() => {
+        setToolTipValues({
+          title: true,
+          message: 'Данные успешно сохранены'
+        })
+        setIsTootTipOpened(true);
+      })
       .catch(err => {
         if (err === 'Ошибка: 409') {
           setToolTipValues({
