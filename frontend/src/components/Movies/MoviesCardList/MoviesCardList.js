@@ -2,7 +2,7 @@
 import { useLocation } from 'react-router-dom';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { apiMovieConfig } from '../../../utils/configs'
 
 // ОТОБРАЖЕНИЕ КАРТОЧЕК
@@ -11,6 +11,7 @@ function MoviesCardList({ movie, onSave, savedMovie, onDelete }) {
 
   // ЛОГИКА СОХРАНЕНИЯ
   const inSaveMovies = location.pathname === '/saved-movies';
+
   const showMoreButton = !inSaveMovies
 
   const [movieToRender, setMovieToRender] = useState(8);
@@ -27,20 +28,22 @@ function MoviesCardList({ movie, onSave, savedMovie, onDelete }) {
 
   // РЕНДЕР ФИЛЬМОВ
   const renderedMovies = movie.slice(0, movieToRender);
+  
+  const toRender = inSaveMovies? movie : renderedMovies
 
   return (
     <section className='movieCardList'>
       <ul className='movieCardList__list'>
         {/* Возвращаем фильм */}
-        {renderedMovies.map((item) => {
-          return <li className='movieCardList__lists'>
+        {toRender.map((item) => {
+          return <li className='movieCardList__lists' key={item.id}>
             <MoviesCard
               inSaveMovies={inSaveMovies}
-              onSave={() => { onSave(item) }}
-              onDelete={() => { onDelete(item)}}
               key={item.id}
+              onSave={() => { onSave(item) }}
+              onDelete={() => { onDelete(item) }}
               name={item.nameRU}
-              image={inSaveMovies? item.image : `${apiMovieConfig.defaultURL}${item.image.url}`}
+              image={inSaveMovies ? item.image : `${apiMovieConfig.defaultURL}${item.image.url}`}
               link={item.trailerLink}
               duration={item.duration}
               movieId={item.id}

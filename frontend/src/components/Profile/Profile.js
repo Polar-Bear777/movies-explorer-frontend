@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useContext, useEffect } from 'react';
 import './Profile.css'
 import InfoTooltip from '../InfoToolTip/InfoTooltip';
+import { regexEmail } from '../../utils/configs';
 
 // ФУНКЦИЯ ПРОФИЛЯ
 function Profile({ isloggedIn, onEdit, onSetIsloggedIn }) {
@@ -37,12 +38,8 @@ function Profile({ isloggedIn, onEdit, onSetIsloggedIn }) {
     message: ''
   })
 
-  // ПЕРЕДАЕМ NAME, EMAIL
-  useEffect(() => {
-    if (userData.name === name && userData.email === email) {
-      setNameValid(false)
-    } else setNameValid(true)
-  }, [name, email])
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true)
+  const [isSameData, setIsSameData] = useState(true)
 
   // ИЗМЕНИТЬ ИМЯ
   function handleEditName(e) {
@@ -73,6 +70,9 @@ function Profile({ isloggedIn, onEdit, onSetIsloggedIn }) {
 
   // ИЗМЕНИТЬ РЕДАКТИРОВАНИЕ ПРОФИЛЯ
   function handleEditAccount() {
+    if (name === '') return
+    if (email === '') return
+
     return onEdit(name, email)
       .then(() => {
         setToolTipValues({
@@ -80,6 +80,8 @@ function Profile({ isloggedIn, onEdit, onSetIsloggedIn }) {
           message: 'Данные успешно сохранены'
         })
         setIsTootTipOpened(true);
+        setIsProfileEdit(false);
+        setIsSameData(true)
       })
       .catch(err => {
         if (err === 'Ошибка: 409') {
@@ -96,6 +98,23 @@ function Profile({ isloggedIn, onEdit, onSetIsloggedIn }) {
         setIsTootTipOpened(true);
       })
   }
+
+
+  const isEmailValid = regexEmail.test(email);
+
+  useEffect(() => {
+    const disabled = isSameData || !isEmailValid || !disabledSubmiter
+    setIsButtonDisabled(disabled)
+  }, [disabledSubmiter, isEmailValid, email, name, isSameData])
+
+  // ПЕРЕДАЕМ NAME, EMAIL
+  useEffect(() => {
+    if (userData.name === name && userData.email === email) {
+      setIsSameData(true)
+    } else setIsSameData(false)
+  }, [name, email, userData])
+
+
 
   return (
     <>
@@ -133,7 +152,7 @@ function Profile({ isloggedIn, onEdit, onSetIsloggedIn }) {
             {isProfileEdit ?
               <>
                 <span className='profile__submit-error profile__submit-error_invisible'>При обновлении профиля произошла ошибка.</span>
-                <button onClick={handleEditAccount} disabled={!disabledSubmiter} type='button' className='profile__button-save'>Сохранить</button>
+                <button onClick={handleEditAccount} disabled={isButtonDisabled} type='button' className='profile__button-save'>Сохранить</button>
               </> :
               <button onClick={hanldeConditionEdit} type='button' className='profile__button-edit'>Редактировать</button>
             }

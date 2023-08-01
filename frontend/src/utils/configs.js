@@ -12,3 +12,5 @@ export const apiMovieConfig = {
     getMovies: 'https://api.nomoreparties.co/beatfilm-movies',
     defaultURL: 'https://api.nomoreparties.co',
 }
+
+export const regexEmail = /[a-z0-9]+@[a-z]+\.[a-z]{2,}/;
