@@ -36,10 +36,10 @@ function MoviesCardList({ movie, onSave, savedMovie, onDelete }) {
       <ul className='movieCardList__list'>
         {/* Возвращаем фильм */}
         {toRender.map((item) => {
-          return <li className='movieCardList__lists' key={item.id}>
+          return <li className='movieCardList__lists'key={inSaveMovies ? item._id : item.id}>
             <MoviesCard
               inSaveMovies={inSaveMovies}
-              key={item.id}
+              key={inSaveMovies ? item._id : item.id}
               onSave={() => { onSave(item) }}
               onDelete={() => { onDelete(item) }}
               name={item.nameRU}
