@@ -10,7 +10,7 @@ function AboutMe() {
         <div className='about-me__block'>
           <h2 className='about-me__name'>Владислав</h2>
           <h4 className='about-me__activity'>Начинающий Фронтенд-разработчик, 25&nbsp;лет</h4>
-          <p className='about-me__description'>Я&nbsp;родился и&nbsp;живу в&nbsp;Иркутск, закончил технический университет ИРНИТУ. У&nbsp;меня есть любимая девушка и&nbsp;кот. Я&nbsp;люблю играть в&nbsp;футбол, а&nbsp;ещё увлекаюсь туризмом. Недавно начал кодить. С&nbsp;2022 года начал свое обучение в&nbsp;Яндекс.Практикум на&nbsp;веб-разработчика. После того, как закончу курс планирую связать свою деятельность в&nbsp;этой сфере.</p>
+          <p className='about-me__description'>Я&nbsp;родился и&nbsp;живу в&nbsp;Иркутске, закончил технический университет ИРНИТУ. Недавно начал кодить. С&nbsp;2022 года начал свое обучение в&nbsp;Яндекс.Практикум на&nbsp;веб-разработчика. После того, как закончу курс планирую связать свою деятельность в&nbsp;этой сфере.</p>
           <h5 className='about-me__platform'>Github</h5>
         </div>
         <div className='about-me__block-photo'>
