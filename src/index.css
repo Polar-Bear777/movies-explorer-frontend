@@ -1,9 +1,0 @@
-/* Стили и шрифты */
-@import url("./vendor/normalize.css");
-@import url("./vendor/fonts/font.css");
-
-/* Блок страницы */
-@import url("./components/App/App.css");
-
-/* HEADER */
-@import url("./components/Header/Header.css");

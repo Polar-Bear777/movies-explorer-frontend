@@ -1,0 +1,111 @@
+.movieCardList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #202020;
+  padding: 50px 70px 80px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.movieCardList__list {
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+  gap: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 0;
+}
+
+.movieCardList__lists {
+  width: 100%;
+}
+
+.movieCardList__item {
+  width: 100%;
+}
+
+.movieCardList__more {
+  background-color: #202020;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0 0;
+}
+
+.movieCardList__more_invisible {
+  padding: 18px 0 19px;
+}
+
+
+.movieCardList__button-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #2f2f2f;
+  border-radius: 6px;
+  font-family: Inter;
+  line-height: normal;
+  font-weight: 500;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  border: 0;
+  width: 320px;
+  height: 36px;
+}
+
+.movieCardList__button-more_invisible {
+  visibility: hidden;
+}
+
+.movieCardList__button-more:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+
+/* Точка перелома между 1280 и 768 */
+@media (max-width: 768px) {
+  .movieCardList {
+    padding: 60px 30px 80px;
+  }
+
+  .movieCardList__more {
+    padding: 64px 0 62px;
+  }
+
+  .movieCardList__more_invisible {
+    padding: 37px 0 62px;
+  }
+}
+
+/* Точка перелома между 768 и 320 */
+@media (max-width: 460px) {
+  .movieCardList {
+    padding: 40px 10px 80px;
+    gap: 20px;
+  }
+
+  .movieCardList__list {
+    gap: 20px;
+  }
+
+  .movieCardList__more {
+    padding: 26px 0 62px;
+  }
+
+  .movieCardList__more_invisible {
+    padding: 0px 0 62px;
+  }
+
+  .movieCardList__button-more {
+    width: 240px;
+  }
+}
